@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="chapter_005 - Часть 005. JVM и JMM." />
+        <module name="chapter_003 - Часть 003. Система ввода вывода." />
+        <module name="chapter_004 - Часть 004. Базы данных." />
+        <module name="chapter_001 - Часть 001. TDD." />
+        <module name="chapter_002 - Часть 002. Структуры данных и алгоритмы." />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
