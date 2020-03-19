@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>chapter_001 - Часть 001. TDD.</artifactId>
+    <artifactId>chapter_001</artifactId>
 
 
 </project>
