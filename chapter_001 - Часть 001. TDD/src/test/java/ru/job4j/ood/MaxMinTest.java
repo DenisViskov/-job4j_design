@@ -1,4 +1,4 @@
-package ru.job4j.OOD;
+package ru.job4j.ood;
 
 import org.hamcrest.core.Is;
 import org.junit.Assert;
@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.util.Comparator;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class MaxMinTest {
 
