@@ -8,9 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="chapter_005 - Часть 005. JVM и JMM." />
         <module name="chapter_003 - Часть 003. Система ввода вывода." />
-        <module name="chapter_004 - Часть 004. Базы данных." />
-        <module name="chapter_001 - Часть 001. TDD." />
         <module name="chapter_002 - Часть 002. Структуры данных и алгоритмы." />
+        <module name="chapter_003." />
+        <module name="chapter_001 - Часть 001. TDD." />
+        <module name="chapter_005" />
+        <module name="chapter_004" />
+        <module name="chapter_004 - Часть 004. Базы данных." />
+        <module name="chapter_002" />
+        <module name="chapter_001" />
       </profile>
     </annotationProcessing>
   </component>
