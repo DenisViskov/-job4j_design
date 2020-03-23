@@ -4,6 +4,7 @@ import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,7 +18,14 @@ public class MaxMinTest {
                 return o1.compareTo(o2);
             }
         };
-        int out = new MaxMin().max(List.of(1, 2, 3, 6, 7, 9), comparator);
+        List<Integer> input = new ArrayList<>();
+        input.add(1);
+        input.add(2);
+        input.add(3);
+        input.add(6);
+        input.add(7);
+        input.add(9);
+        int out = new MaxMin().max(input, comparator);
         Assert.assertThat(out, Is.is(9));
     }
 
@@ -26,10 +34,17 @@ public class MaxMinTest {
         Comparator<Integer> comparator = new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return o1.compareTo(o2);
+                return o2.compareTo(o1);
             }
         };
-        int out = new MaxMin().min(List.of(1, 2, 3, 6, 7, 9), comparator);
+        List<Integer> input = new ArrayList<>();
+        input.add(1);
+        input.add(2);
+        input.add(3);
+        input.add(6);
+        input.add(7);
+        input.add(9);
+        int out = new MaxMin().min(input, comparator);
         Assert.assertThat(out, Is.is(1));
     }
 }

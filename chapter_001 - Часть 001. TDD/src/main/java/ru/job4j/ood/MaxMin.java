@@ -1,9 +1,6 @@
 package ru.job4j.ood;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Class has realizes looking for max and min element
@@ -23,9 +20,7 @@ public class MaxMin {
      * @return - max element
      */
     public <T> T max(List<T> value, Comparator<T> comparator) {
-        Set<T> max = new TreeSet<>(comparator);
-        max.addAll(value);
-        return (T) max.toArray()[max.toArray().length - 1];
+        return valueAnswer(value, comparator);
     }
 
     /**
@@ -37,8 +32,19 @@ public class MaxMin {
      * @return - min element
      */
     public <T> T min(List<T> value, Comparator<T> comparator) {
-        Set<T> min = new TreeSet<>(comparator);
-        min.addAll(value);
-        return (T) min.toArray()[0];
+        return valueAnswer(value, comparator);
+    }
+
+    /**
+     * Method has realizes looking for answer by given comparator in parameters
+     *
+     * @param value      - list of values
+     * @param comparator - how to compare
+     * @param <T>        - T
+     * @return - value
+     */
+    private <T> T valueAnswer(List<T> value, Comparator<T> comparator) {
+        Collections.sort(value, comparator);
+        return value.get(value.size() - 1);
     }
 }
