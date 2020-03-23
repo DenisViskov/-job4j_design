@@ -1,4 +1,4 @@
-package ru.job4j.ood;
+package ru.job4j.ood.tdd;
 
 /**
  * Interface created for tests
@@ -7,5 +7,5 @@ package ru.job4j.ood;
  * @version 1.0
  * @since 23.03.2020
  */
-public interface Ticket {
+public interface Account {
 }

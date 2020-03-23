@@ -1,8 +1,9 @@
-package ru.job4j.ood;
+package ru.job4j.ood.tdd;
 
 import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.ood.tdd.MaxMin;
 
 import java.util.ArrayList;
 import java.util.Comparator;
