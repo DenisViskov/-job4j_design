@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
+import javax.xml.stream.XMLReporter;
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
@@ -30,14 +31,14 @@ public class ReportEngineTest {
     }
 
     /*@Test
-    public void whenWeCreateReportForProgrammers() {
+    public void whenWeCreateReportForProgrammersHTML() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
         ReportEngine engine = new ReportForProgrammers(store);
-        HTMLDocument expected = new HTMLDocument(Path);
-        HTMLDocument out = engine.generate(i -> true);
+        Report expected = new HTMLDocument(Path);
+        Report out = engine.generate(i -> true);
         assertThat(out.toString(),is(expected.toString()));
     }
 
@@ -73,5 +74,29 @@ public class ReportEngineTest {
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
+    }
+
+    @Test
+    public void whenWeCreateReportByXML() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employer worker = new Employer("Ivan", now, now, 100);
+        store.add(worker);
+        ReportEngine engine = new ReportForProgrammers(store);
+        Report expected = new XMLReporter(Path);
+        Report out = engine.generate(i -> true);
+        assertThat(out.toString(),is(expected.toString()));
+    }
+
+    @Test
+    public void whenWeCreateReportByJSON() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employer worker = new Employer("Ivan", now, now, 100);
+        store.add(worker);
+        ReportEngine engine = new ReportForProgrammers(store);
+        Report expected = new JsonParser(Path);
+        Report out = engine.generate(i -> true);
+        assertThat(out.toString(),is(expected.toString()));
     }*/
 }
