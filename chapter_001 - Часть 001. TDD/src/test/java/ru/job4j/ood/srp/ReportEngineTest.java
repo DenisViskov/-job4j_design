@@ -35,7 +35,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        ReportForProgrammers engine = new ReportForProgrammers(store);
+        ReportEngine engine = new ReportForProgrammers(store);
         HTMLDocument expected = new HTMLDocument(Path);
         HTMLDocument out = engine.generate(i -> true);
         assertThat(out.toString(),is(expected.toString()));
@@ -47,7 +47,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        ReportEngineForAccountant engine = new ReportEngine(store);
+        ReportEngine engine = new ReportEngineForAccountant(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
@@ -65,7 +65,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        ReportEngineForHR engine = new ReportEngine(store);
+        ReportEngine engine = new ReportEngineForHR(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Salary;")
                 .append(System.lineSeparator())
