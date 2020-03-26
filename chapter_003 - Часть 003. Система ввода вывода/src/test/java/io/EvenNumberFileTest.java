@@ -25,7 +25,7 @@ public class EvenNumberFileTest {
 
     @Test
     public void isEvenNumberTest() throws IOException {
-        String path = "C:/projects/job4j/even.txt";
+        String path = "./even.txt";
         StringJoiner expected = new StringJoiner(System.lineSeparator());
         expected.add("1" + ": " + false);
         expected.add("5" + ": " + false);
