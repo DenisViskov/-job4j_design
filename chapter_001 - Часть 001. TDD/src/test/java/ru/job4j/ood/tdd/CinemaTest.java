@@ -14,7 +14,7 @@ import static org.hamcrest.core.Is.is;
 @Ignore
 public class CinemaTest {
 
-    /*@Test
+    @Ignore
     public void findTest() {
         Cinema cinema = new Cinema3D();
         cinema.add(new Session3D());
@@ -22,7 +22,7 @@ public class CinemaTest {
         assertThat(sessions, is(Arrays.asList(new Session3D())));
     }
 
-    @Test
+    @Ignore
     public void buyTest() {
         Account account = new AccountCinema();
         Cinema cinema = new Cinema3D();
@@ -32,41 +32,33 @@ public class CinemaTest {
         assertThat(ticket, is(new Ticket3D()));
     }
 
-    @Test
+    @Ignore
     public void whenTryToSelectPlaceWhichClosed() {
         Account account = new AccountCinema();
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         date.set(2020, 10, 10, 23, 00);
-        boolean result = false;
-        try {
-            Ticket ticket = cinema.buy(account, 1, 2, date);
-        } catch (Exception e) {
-            result = true;
-        }
-        assertThat(result, is(true);
+        Ticket ticket = cinema.buy(account, 1, 2, date);
+        Ticket result = null;
+        assertThat(ticket, is(result));
     }
 
-    @Test
+    @Ignore
     public void whenTryToSelectDateWhichNotEnabled() {
         Account account = new AccountCinema();
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
         date.set(2020, 10, 35, 23, 00);
-        boolean result = false;
-        try {
-            Ticket ticket = cinema.buy(account, 1, 2, date);
-        } catch (Exception e) {
-            result = true;
-        }
-        assertThat(result, is(true);
+        Ticket ticket = cinema.buy(account, 1, 2, date);
+        Ticket result = null;
+        assertThat(ticket, is(result));
     }
 
-    @Test
+    @Ignore
     public void whenSelectedCinemaWhichDontHave() {
         Cinema cinema = new Cinema5D();
         List<Session> sessions = cinema.find(session -> true);
         Assert.assertThat(sessions.size(), is(0));
-    }*/
+    }
 
 }
