@@ -30,7 +30,7 @@ public class Search {
     }
 
     public static void main(String[] args) throws IOException {
-        for (String file : search(Paths.get("C:/Users/vda-it/projects/-job4j_design/chapter_003 - Часть 003. Система ввода вывода/data"), "txt")) {
+        for (String file : search(Paths.get(args[0]), args[1])) {
             System.out.println(file);
         }
     }
