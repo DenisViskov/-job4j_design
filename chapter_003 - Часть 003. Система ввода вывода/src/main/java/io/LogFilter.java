@@ -1,9 +1,6 @@
 package io;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +47,17 @@ public class LogFilter {
         return split[split.length - 2].equals("404") ? true : false;
     }
 
-    public static void main(String[] args) {
-        List<String> log = filter("./data/log.txt");
-        System.out.println(log);
+    /**
+     * Method has realizes writing into the file log which we've got from first file of log
+     *
+     * @param log  - log
+     * @param file - destination path
+     */
+    public void save(List<String> log, String file) {
+        try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(file)))) {
+            log.forEach(writer::println);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
