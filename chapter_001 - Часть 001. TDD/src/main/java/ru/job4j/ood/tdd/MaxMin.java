@@ -44,11 +44,11 @@ public class MaxMin {
      * @return - value
      */
     private <T> T valueAnswer(List<T> value, Comparator<T> comparator) {
-        Iterator<T> it = value.iterator();
-        T result = it.next();
-        while (it.hasNext()) {
-            T element = it.next();
-            result = comparator.compare(result, element) > 0 ? result : element;
+        T result = value.get(0);
+        int check = 1;
+        while (check < value.size()) {
+            result = comparator.compare(result, value.get(check)) > 0 ? result : value.get(check);
+            check++;
         }
         return result;
     }
