@@ -21,7 +21,6 @@ public class Analizy {
      */
     public void unavailable(File source, File target) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(source));
-        PrintWriter writer = new PrintWriter(target);
         StringJoiner line = new StringJoiner(System.lineSeparator());
         while (reader.ready()) {
             reader.lines()
@@ -30,7 +29,19 @@ public class Analizy {
         }
         reader.close();
         String result = builderLog(line.toString());
-        writer.println(result);
+        logWriter(result, target);
+    }
+
+    /**
+     * Method has realizes writing log report into the target file
+     *
+     * @param log    - log
+     * @param target - destination file
+     * @throws FileNotFoundException
+     */
+    private void logWriter(String log, File target) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(target);
+        writer.println(log);
         writer.close();
     }
 
