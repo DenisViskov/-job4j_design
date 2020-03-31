@@ -20,14 +20,16 @@ public class Analizy {
      * @throws IOException
      */
     public void unavailable(File source, File target) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(source));
         StringJoiner line = new StringJoiner(System.lineSeparator());
-        while (reader.ready()) {
-            reader.lines()
-                    .filter(lines -> !lines.equals(""))
-                    .forEach(line::add);
+        try (BufferedReader reader = new BufferedReader(new FileReader(source));) {
+            while (reader.ready()) {
+                reader.lines()
+                        .filter(lines -> !lines.equals(""))
+                        .forEach(line::add);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        reader.close();
         String result = builderLog(line.toString());
         logWriter(result, target);
     }
