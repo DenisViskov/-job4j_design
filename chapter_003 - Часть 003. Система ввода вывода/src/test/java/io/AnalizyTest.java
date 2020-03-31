@@ -14,8 +14,8 @@ import static org.junit.Assert.assertThat;
 public class AnalizyTest {
 
     @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
-    String sourcePath = "./data/ServerLog.txt";
+    public final TemporaryFolder folder = new TemporaryFolder();
+    private final String sourcePath = "./data/ServerLog.txt";
 
     @Test
     public void unavailableTest() throws IOException {
