@@ -26,7 +26,7 @@ public class Search {
     public static List<String> search(Path root, String ext) throws IOException {
         PrintFiles printFiles = new PrintFiles(ext);
         Files.walkFileTree(root, printFiles);
-        return printFiles.getFiles();
+        return printFiles.result();
     }
 
     public static void main(String[] args) throws IOException {

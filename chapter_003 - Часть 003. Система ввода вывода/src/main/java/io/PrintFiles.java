@@ -30,20 +30,8 @@ public class PrintFiles implements FileVisitor<Path> {
         this.ext = ext;
     }
 
-    public List<String> getFiles() {
+    public List<String> result() {
         return files;
-    }
-
-    public void setFiles(List<String> files) {
-        this.files = files;
-    }
-
-    public String getExt() {
-        return ext;
-    }
-
-    public void setExt(String ext) {
-        this.ext = ext;
     }
 
     @Override
