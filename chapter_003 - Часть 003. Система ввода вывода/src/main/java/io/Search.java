@@ -1,5 +1,6 @@
 package io;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,6 +31,9 @@ public class Search {
     }
 
     public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            throw new IllegalStateException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+        }
         for (String file : search(Paths.get(args[0]), args[1])) {
             System.out.println(file);
         }
