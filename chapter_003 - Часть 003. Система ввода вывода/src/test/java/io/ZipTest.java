@@ -1,6 +1,7 @@
 package io;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -9,9 +10,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -19,6 +18,21 @@ import java.util.zip.ZipOutputStream;
 import static org.hamcrest.core.Is.is;
 
 public class ZipTest {
+
+    /**
+     * Comparator for Travis CI (There using Linux Server)
+     */
+    private Comparator<File> comparator;
+
+    @Before
+    public void setUp() {
+        comparator = new Comparator<File>() {
+            @Override
+            public int compare(File o1, File o2) {
+                return o1.compareTo(o2);
+            }
+        };
+    }
 
     private final String[] args = {"-d",
             "./chapter_003 - Часть 003. Система ввода вывода/data",
@@ -76,6 +90,8 @@ public class ZipTest {
                 .filter(file -> !file.getPath().endsWith(".txt"))
                 .collect(Collectors.toList());
         List<File> out = new Zip(new ArgZip(args)).excludesList(Paths.get("data").toAbsolutePath(), ".txt");
+        Collections.sort(expected, comparator);
+        Collections.sort(out, comparator);
         Assert.assertThat(expected, is(out));
     }
 }
