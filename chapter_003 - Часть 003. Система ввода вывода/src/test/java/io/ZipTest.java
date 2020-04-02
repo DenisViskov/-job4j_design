@@ -87,6 +87,7 @@ public class ZipTest {
         File source = Paths.get("data").getFileName().toFile();
         List<File> expected = Arrays.stream(source.listFiles())
                 .map(file -> Paths.get(file.getPath().replaceFirst("data\\\\", "")).toFile())
+                .map(file -> Paths.get(file.getPath().replaceFirst("data/", "")).toFile())
                 .filter(file -> !file.getPath().endsWith(".txt"))
                 .collect(Collectors.toList());
         List<File> out = new Zip(new ArgZip(args)).excludesList(Paths.get("data").toAbsolutePath(), ".txt");
