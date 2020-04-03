@@ -1,9 +1,10 @@
-package io;
+package io.systemio;
 
+import io.systemio.MatrixTable;
+import io.systemio.MultiplicationWriter;
 import org.junit.Test;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.*;

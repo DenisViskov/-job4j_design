@@ -1,5 +1,6 @@
-package io;
+package io.readfileconfig;
 
+import io.readfileconfig.Config;
 import org.junit.Test;
 
 import java.io.IOException;

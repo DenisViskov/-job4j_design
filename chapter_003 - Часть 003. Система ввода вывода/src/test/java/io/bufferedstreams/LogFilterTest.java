@@ -1,14 +1,13 @@
-package io;
+package io.bufferedstreams;
 
+import io.bufferedstreams.LogFilter;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;

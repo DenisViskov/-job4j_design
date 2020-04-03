@@ -1,5 +1,6 @@
-package io;
+package io.scannerfilesystem;
 
+import io.scannerfilesystem.Search;
 import org.junit.Before;
 import org.junit.Test;
 

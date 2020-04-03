@@ -1,6 +1,6 @@
-package io;
+package io.analyzavailableserver;
 
-import io.Analizy;
+import io.analyzavailableserver.Analizy;
 import org.hamcrest.core.Is;
 import org.junit.Rule;
 import org.junit.Test;

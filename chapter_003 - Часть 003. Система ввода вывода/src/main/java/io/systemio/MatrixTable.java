@@ -1,4 +1,4 @@
-package io;
+package io.systemio;
 
 /**
  * Class has realizes multiplication table

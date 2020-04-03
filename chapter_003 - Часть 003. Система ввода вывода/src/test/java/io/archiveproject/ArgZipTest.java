@@ -1,9 +1,8 @@
-package io;
+package io.archiveproject;
 
-import org.junit.Before;
+import io.archiveproject.ArgZip;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;

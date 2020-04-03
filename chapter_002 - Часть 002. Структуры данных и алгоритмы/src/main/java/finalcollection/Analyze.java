@@ -1,4 +1,4 @@
-package ru.job4j.finalcollection;
+package finalcollection;
 
 import java.util.List;
 import java.util.Map;

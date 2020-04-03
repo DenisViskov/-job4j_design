@@ -1,6 +1,6 @@
-package io;
+package io.fileinputstream;
 
-import io.EvenNumberFile;
+import io.fileinputstream.EvenNumberFile;
 import org.hamcrest.core.Is;
 import org.junit.After;
 import org.junit.Assert;

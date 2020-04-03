@@ -1,4 +1,4 @@
-package io;
+package io.scannerfilesystem;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

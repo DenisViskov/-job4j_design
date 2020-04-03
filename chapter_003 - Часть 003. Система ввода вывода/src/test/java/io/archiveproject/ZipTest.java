@@ -1,5 +1,7 @@
-package io;
+package io.archiveproject;
 
+import io.archiveproject.ArgZip;
+import io.archiveproject.Zip;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -8,7 +10,6 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,5 +1,6 @@
-package io;
+package io.file;
 
+import io.file.Dir;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -10,8 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;

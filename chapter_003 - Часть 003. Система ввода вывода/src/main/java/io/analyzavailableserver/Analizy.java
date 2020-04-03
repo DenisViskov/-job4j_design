@@ -1,4 +1,4 @@
-package io;
+package io.analyzavailableserver;
 
 import java.io.*;
 import java.util.StringJoiner;

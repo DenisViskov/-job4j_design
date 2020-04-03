@@ -1,4 +1,4 @@
-package io;
+package io.archiveproject;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
