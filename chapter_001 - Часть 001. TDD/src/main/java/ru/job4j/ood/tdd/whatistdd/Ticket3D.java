@@ -1,4 +1,4 @@
-package ru.job4j.ood.tdd;
+package ru.job4j.ood.tdd.whatistdd;
 
 /**
  * Class is an example for tests
@@ -7,5 +7,5 @@ package ru.job4j.ood.tdd;
  * @version 1.0
  * @since 26.03.2020
  */
-public class Session3D implements Session {
+public class Ticket3D implements Ticket {
 }

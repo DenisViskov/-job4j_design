@@ -1,4 +1,4 @@
-package ru.job4j.ood.tdd;
+package ru.job4j.ood.tdd.whatistdd;
 
 import java.util.Calendar;
 import java.util.List;

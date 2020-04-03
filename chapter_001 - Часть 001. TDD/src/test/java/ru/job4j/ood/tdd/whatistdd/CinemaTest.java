@@ -1,8 +1,8 @@
-package ru.job4j.ood.tdd;
+package ru.job4j.ood.tdd.whatistdd;
 
 import org.junit.Assert;
 import org.junit.Ignore;
-import org.junit.Test;
+import ru.job4j.ood.tdd.whatistdd.*;
 
 import java.util.Arrays;
 import java.util.Calendar;

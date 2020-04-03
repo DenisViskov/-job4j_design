@@ -1,7 +1,7 @@
-package ru.job4j.ood.tdd;
+package ru.job4j.ood.tdd.template;
 
 import org.junit.Ignore;
-import org.junit.Test;
+import ru.job4j.ood.tdd.template.Generate;
 
 import java.util.HashMap;
 import java.util.Map;

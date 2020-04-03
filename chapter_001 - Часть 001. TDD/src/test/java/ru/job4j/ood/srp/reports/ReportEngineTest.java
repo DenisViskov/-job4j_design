@@ -1,10 +1,10 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.srp.reports;
 
 import org.junit.Test;
+import ru.job4j.ood.srp.reports.Employer;
+import ru.job4j.ood.srp.reports.MemStore;
+import ru.job4j.ood.srp.reports.ReportEngine;
 
-import javax.swing.text.html.HTML;
-import javax.swing.text.html.HTMLDocument;
-import javax.xml.stream.XMLReporter;
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
