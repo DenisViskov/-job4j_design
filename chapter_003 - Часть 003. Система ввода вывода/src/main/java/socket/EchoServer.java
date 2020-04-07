@@ -20,12 +20,13 @@ public class EchoServer {
             while (true) {
                 Socket socket = serverSocket.accept();
                 String clientMessage = server.getRequest(socket);
-                String answerServer = "HTTP/1.1 200 OK\r\n\\";
-                server.sendRequest(socket, answerServer);
-                if (clientMessage.contains("Bye")) {
+                System.out.println(clientMessage);
+                if (clientMessage.contains("Exit")) {
                     socket.close();
                     break;
                 }
+                String answerServer = server.whatShouldAnswering(clientMessage);
+                server.sendRequest(socket, answerServer);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,7 +58,18 @@ public class EchoServer {
      */
     private void sendRequest(Socket socket, String message) throws IOException {
         BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+        out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
         out.write(message.getBytes());
         out.flush();
+    }
+
+    private String whatShouldAnswering(String request) {
+        String result;
+        if (request.contains("Hello")) {
+            result = "Hello";
+        } else {
+            result = request;
+        }
+        return result;
     }
 }
