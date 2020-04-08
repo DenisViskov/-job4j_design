@@ -16,20 +16,34 @@ public class EchoServer {
     public static void main(String[] args) {
         EchoServer server = new EchoServer();
         try (ServerSocket serverSocket = new ServerSocket(9000)) {
-            while (true) {
-                Socket socket = serverSocket.accept();
-                String clientMessage = server.getRequest(socket);
-                System.out.println(clientMessage);
-                if (clientMessage.contains("Exit")) {
-                    socket.close();
-                    break;
-                }
-                String answerServer = server.whatShouldAnswering(clientMessage);
-                server.sendRequest(socket, answerServer);
+            boolean cycle = true;
+            while (cycle) {
+                cycle = server.controller(serverSocket.accept());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Method has realizes control to getting and sending request between server and client
+     * Also method checking when we should broken our cycle
+     *
+     * @param socket - socket
+     * @return - true or false
+     * @throws IOException
+     */
+    public boolean controller(Socket socket) throws IOException {
+        boolean result = true;
+        String clientMessage = getRequest(socket);
+        System.out.println(clientMessage);
+        if (clientMessage.contains("Exit")) {
+            socket.close();
+            result = false;
+        }
+        String answerServer = whatShouldAnswering(clientMessage);
+        sendRequest(socket, answerServer);
+        return result;
     }
 
     /**
