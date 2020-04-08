@@ -61,15 +61,16 @@ public class EchoServer {
         out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
         out.write(message.getBytes());
         out.flush();
+        out.close();
     }
 
+    /**
+     * Method defines that server should answers to client
+     *
+     * @param request - message request
+     * @return - answer
+     */
     private String whatShouldAnswering(String request) {
-        String result;
-        if (request.contains("Hello")) {
-            result = "Hello";
-        } else {
-            result = request;
-        }
-        return result;
+        return request.contains("Hello") ? "Hello" : request;
     }
 }
