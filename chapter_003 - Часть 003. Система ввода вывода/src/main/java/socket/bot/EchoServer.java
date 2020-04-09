@@ -36,13 +36,13 @@ public class EchoServer {
     public boolean controller(Socket socket) throws IOException {
         boolean result = true;
         String clientMessage = getRequest(socket);
-        System.out.println(clientMessage);
         if (clientMessage.contains("Exit")) {
             socket.close();
             result = false;
+        } else {
+            String answerServer = whatShouldAnswering(clientMessage);
+            sendRequest(socket, answerServer);
         }
-        String answerServer = whatShouldAnswering(clientMessage);
-        sendRequest(socket, answerServer);
         return result;
     }
 
