@@ -28,7 +28,7 @@ public class EchoServerTest {
         boolean out = server.controller(socket);
         String expected = "HTTP/1.1 200 OK" + System.lineSeparator() + System.lineSeparator() + "Hello";
         assertThat(out, is(true));
-        assertThat(expected.getBytes(), is(outSocket.toByteArray()));
+        assertThat(expected, is(outSocket.toString()));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class EchoServerTest {
         String expected = "HTTP/1.1 200 OK" + System.lineSeparator() + System.lineSeparator()
                 + "I send to you something bla bla bla...";
         assertThat(out, is(true));
-        assertThat(expected.getBytes(), is(outSocket.toByteArray()));
+        assertThat(expected, is(outSocket.toString()));
     }
 
     @Test
