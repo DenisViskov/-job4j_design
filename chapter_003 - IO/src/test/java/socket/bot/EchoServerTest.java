@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 public class EchoServerTest {
 
-    @Ignore
+    @Test
     public void whenClientSendingHelloTest() throws IOException {
         EchoServer server = new EchoServer();
         ByteArrayInputStream inSocket = new ByteArrayInputStream("Hello".getBytes());
@@ -31,7 +31,7 @@ public class EchoServerTest {
         assertThat(expected.getBytes(), is(outSocket.toByteArray()));
     }
 
-    @Ignore
+    @Test
     public void whenClientSendingSomethingTest() throws IOException {
         EchoServer server = new EchoServer();
         ByteArrayInputStream inSocket = new ByteArrayInputStream("I send to you something bla bla bla...".getBytes());
