@@ -1,5 +1,6 @@
 package socket.bot;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -13,6 +14,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
 
+
 public class EchoServerTest {
 
     @Test
@@ -24,9 +26,9 @@ public class EchoServerTest {
         when(socket.getInputStream()).thenReturn(inSocket);
         when(socket.getOutputStream()).thenReturn(outSocket);
         boolean out = server.controller(socket);
-        String expected = "HTTP/1.1 200 OK" + System.lineSeparator() + System.lineSeparator() + "Hello";
+        String expected = "HTTP/1.1 200 OK\r\n\r\n" + "Hello";
         assertThat(out, is(true));
-        assertThat(expected.getBytes(), is(outSocket.toByteArray()));
+        assertThat(expected, is(outSocket.toString()));
     }
 
     @Test
@@ -38,10 +40,10 @@ public class EchoServerTest {
         when(socket.getInputStream()).thenReturn(inSocket);
         when(socket.getOutputStream()).thenReturn(outSocket);
         boolean out = server.controller(socket);
-        String expected = "HTTP/1.1 200 OK" + System.lineSeparator() + System.lineSeparator()
+        String expected = "HTTP/1.1 200 OK\r\n\r\n"
                 + "I send to you something bla bla bla...";
         assertThat(out, is(true));
-        assertThat(expected.getBytes(), is(outSocket.toByteArray()));
+        assertThat(expected, is(outSocket.toString()));
     }
 
     @Test
