@@ -9,11 +9,11 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>chapter_001 - Часть 001. TDD</module>
-        <module>chapter_002 - Часть 002. Структуры данных и алгоритмы</module>
-        <module>chapter_003 - Часть 003. Система ввода вывода</module>
-        <module>chapter_004 - Часть 004. Базы данных</module>
-        <module>chapter_005 - Часть 005. JVM и JMM</module>
+        <module>chapter_001 - TDD</module>
+        <module>chapter_002 - Data structures</module>
+        <module>chapter_003 - IO</module>
+        <module>chapter_004 - Data Base</module>
+        <module>chapter_005 - JVM and JMM</module>
     </modules>
 
     <properties>
