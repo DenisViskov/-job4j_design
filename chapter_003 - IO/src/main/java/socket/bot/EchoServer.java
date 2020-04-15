@@ -1,5 +1,8 @@
 package socket.bot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,6 +16,12 @@ import java.util.StringJoiner;
  * @since 06.04.2020
  */
 public class EchoServer {
+
+    /**
+     * Logger
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class);
+
     public static void main(String[] args) {
         EchoServer server = new EchoServer();
         try (ServerSocket serverSocket = new ServerSocket(9000)) {
@@ -21,7 +30,7 @@ public class EchoServer {
                 cycle = server.controller(serverSocket.accept());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("Oops something wrong :", e);
         }
     }
 
