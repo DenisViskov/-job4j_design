@@ -14,11 +14,11 @@ public class AnalyzeTest {
 
     @Before
     public void setUp() {
-        Analyze.User first = new Analyze.User((int) (Math.random() * 1000), "Vasya");
-        Analyze.User second = new Analyze.User((int) (Math.random() * 1000), "Petya");
-        Analyze.User third = new Analyze.User((int) (Math.random() * 1000), "Oleg");
-        Analyze.User four = new Analyze.User((int) (Math.random() * 1000), "Alexander");
-        Analyze.User five = new Analyze.User((int) (Math.random() * 1000), "Pavel");
+        Analyze.User first = new Analyze.User((int) (Math.random() * 1000000), "Vasya");
+        Analyze.User second = new Analyze.User((int) (Math.random() * 1000000), "Petya");
+        Analyze.User third = new Analyze.User((int) (Math.random() * 1000000), "Oleg");
+        Analyze.User four = new Analyze.User((int) (Math.random() * 1000000), "Alexander");
+        Analyze.User five = new Analyze.User((int) (Math.random() * 1000000), "Pavel");
         previous.add(first);
         previous.add(second);
         previous.add(third);
@@ -30,8 +30,8 @@ public class AnalyzeTest {
     public void howMuchIsAddedUserDiffTest() {
         List<Analyze.User> current = new ArrayList<>();
         current.addAll(previous);
-        current.add(new Analyze.User((int) (Math.random() * 1000), "Ivan"));
-        current.add(new Analyze.User((int) (Math.random() * 1000), "Georgy"));
+        current.add(new Analyze.User((int) (Math.random() * 1000000), "Ivan"));
+        current.add(new Analyze.User((int) (Math.random() * 1000000), "Georgy"));
         Analyze.Info out = new Analyze().diff(previous, current);
         Assert.assertThat(out, Is.is(new Analyze.Info(2, 0, 0)));
     }
@@ -61,7 +61,7 @@ public class AnalyzeTest {
         List<Analyze.User> current = new ArrayList<>();
         current.addAll(previous);
         current.remove(4);
-        current.add(new Analyze.User((int) (Math.random() * 1000), "Sergey"));
+        current.add(new Analyze.User((int) (Math.random() * 1000000), "Sergey"));
         Analyze.Info out = new Analyze().diff(previous, current);
         Assert.assertThat(out, Is.is(new Analyze.Info(1, 0, 1)));
     }
@@ -71,7 +71,7 @@ public class AnalyzeTest {
         List<Analyze.User> current = new ArrayList<>();
         current.addAll(previous);
         current.remove(4);
-        current.add(new Analyze.User((int) (Math.random() * 1000), "Sergey"));
+        current.add(new Analyze.User((int) (Math.random() * 1000000), "Sergey"));
         current.set(2, new Analyze.User(previous.get(2).getId(), "newName"));
         Analyze.Info out = new Analyze().diff(previous, current);
         Assert.assertThat(out, Is.is(new Analyze.Info(1, 1, 1)));
@@ -83,7 +83,7 @@ public class AnalyzeTest {
         current.addAll(previous);
         current.remove(4);
         current.remove(1);
-        current.add(new Analyze.User((int) (Math.random() * 1000), "Sergey"));
+        current.add(new Analyze.User((int) (Math.random() * 1000000), "Sergey"));
         current.set(0, new Analyze.User(previous.get(0).getId(), "newName"));
         Analyze.Info out = new Analyze().diff(previous, current);
         Assert.assertThat(out, Is.is(new Analyze.Info(1, 1, 2)));
