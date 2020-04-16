@@ -1,5 +1,8 @@
 package finallytask;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,17 +15,21 @@ import java.util.Map;
  */
 public class Validator implements Validate {
 
+    private Map<String, String> keys = new HashMap<>();
+
     @Override
     public boolean validation(String line) {
         if (line.isEmpty()) {
-            throw new IllegalArgumentException("Please restart application and enter command which contains:" + System.lineSeparator()
+            throw new IllegalArgumentException("Please restart application and enter command which contains:"
+                    + System.lineSeparator()
                     + "-d directory" + System.lineSeparator()
                     + "-n file name" + System.lineSeparator()
                     + "-m mask, -f whole name or -r regular verb" + System.lineSeparator()
                     + "-o log directory"
             );
         }
-        String[] split = line.split(" ");
+        keys = buildCommand(line.split(" "));
+
         return true;
     }
 
@@ -42,5 +49,20 @@ public class Validator implements Validate {
             }
         }
         return result;
+    }
+
+    private boolean checkKeys() {
+        Path directory = Paths.get(keys.get("-d"));
+        String target = keys.get("-n");
+        String out = keys.get("-o");
+        String key = keys.get("key");
+        if (!Files.isDirectory(directory)) {
+            System.out.println("Please enter path like: c:/...");
+            return false;
+        }
+        /*if(key.equals("-m")){
+            if(target.matches())
+        }*/
+        return true;
     }
 }
