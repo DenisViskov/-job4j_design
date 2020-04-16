@@ -81,7 +81,7 @@ public class Validator implements Validate {
                 result = false;
             }
         } else if (key.equals("-r")) {
-            if (!target.matches("[\\\\] + [.+$]")) {
+            if (!target.matches("\\\\.+$")) {
                 System.out.println("Please enter regular verb like: \\W or \\w");
                 result = false;
             }
