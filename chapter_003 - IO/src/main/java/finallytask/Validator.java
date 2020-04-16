@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Класс реализует ...
@@ -29,8 +30,7 @@ public class Validator implements Validate {
             );
         }
         keys = buildCommand(line.split(" "));
-
-        return true;
+        return checkKeys();
     }
 
     private Map<String, String> buildCommand(String[] spliteLine) {
@@ -52,17 +52,46 @@ public class Validator implements Validate {
     }
 
     private boolean checkKeys() {
-        Path directory = Paths.get(keys.get("-d"));
+        String directory = keys.get("-d");
         String target = keys.get("-n");
         String out = keys.get("-o");
         String key = keys.get("key");
-        if (!Files.isDirectory(directory)) {
+        return checkDirectory(directory)
+                && checkTarget(key, target)
+                && checkOut(out);
+    }
+
+    private boolean checkDirectory(String path) {
+        boolean result = true;
+        if (!Files.isDirectory(Paths.get(path))) {
             System.out.println("Please enter path like: c:/...");
-            return false;
+            result = false;
         }
-        /*if(key.equals("-m")){
-            if(target.matches())
-        }*/
-        return true;
+        return result;
+    }
+
+    private boolean checkTarget(String key, String target) {
+        boolean result = true;
+        if (key.equals("-m")) {
+            if (target.substring(target.indexOf('.'), target.length() - 1).length() != 3) {
+                System.out.println("Please enter mask like: .txt or .csv");
+                result = false;
+            }
+        } else if (key.equals("-r")) {
+            if (!target.matches("[\\\\] + [.+$]")) {
+                System.out.println("Please enter regular verb like: \\W or \\w");
+                result = false;
+            }
+        }
+        return result;
+    }
+
+    private boolean checkOut(String path) {
+        boolean result = true;
+        if (path.substring(path.indexOf('.'), path.length() - 1).length() != 3) {
+            System.out.println("Please enter name like: *.txt or *.csv");
+            result = false;
+        }
+        return result;
     }
 }
