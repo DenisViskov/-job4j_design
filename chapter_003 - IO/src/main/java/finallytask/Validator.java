@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * Класс реализует ...
@@ -73,7 +74,9 @@ public class Validator implements Validate {
     private boolean checkTarget(String key, String target) {
         boolean result = true;
         if (key.equals("-m")) {
-            if (target.substring(target.indexOf('.'), target.length() - 1).length() != 3) {
+            int size = target.contains(".")
+                    ? target.substring(target.indexOf('.'), target.length() - 1).length() : 0;
+            if (size > 4 || size < 3) {
                 System.out.println("Please enter mask like: .txt or .csv");
                 result = false;
             }
@@ -88,7 +91,9 @@ public class Validator implements Validate {
 
     private boolean checkOut(String path) {
         boolean result = true;
-        if (path.substring(path.indexOf('.'), path.length() - 1).length() != 3) {
+        String cut = path.contains(".")
+                ? path.substring(path.indexOf('.'), path.length() - 1) : "";
+        if (cut.length() < 3 || cut.length() > 4) {
             System.out.println("Please enter name like: *.txt or *.csv");
             result = false;
         }

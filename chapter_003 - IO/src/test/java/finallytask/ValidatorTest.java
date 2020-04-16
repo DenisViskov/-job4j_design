@@ -24,17 +24,20 @@ public class ValidatorTest {
     @Test
     public void whenWeHaveTrueTest() {
         Validate validator = new Validator();
-        String input = "-d c:/ -n *.txt -m -o log.txt";
+        String input = "-d c:/ -n .txt -m -o log.txt";
         boolean result = validator.validation(input);
+        assertThat(result, is(true));
+        input = "-d c:/ -n \\w -r -o log.txt";
+        result = validator.validation(input);
         assertThat(result, is(true));
     }
 
     @Test
     public void whenWeEnteredWrongDirectoryTest() {
         Validate validator = new Validator();
-        String input = "-d c -n *.txt -m -o log.txt";
+        String input = "-d c -n .txt -m -o log.txt";
         boolean result = validator.validation(input);
-        String expected = "Please enter path like: c:/...";
+        String expected = "Please enter path like: c:/..." + System.lineSeparator();
         assertThat(result, is(false));
         assertThat(expected, is(out.toString()));
         out.reset();
@@ -45,7 +48,7 @@ public class ValidatorTest {
         Validate validator = new Validator();
         String input = "-d c:/ -n txt -m -o log.txt";
         boolean result = validator.validation(input);
-        String expected = "Please enter mask like: .txt or .csv";
+        String expected = "Please enter mask like: .txt or .csv" + System.lineSeparator();
         assertThat(result, is(false));
         assertThat(expected, is(out.toString()));
         out.reset();
@@ -56,7 +59,7 @@ public class ValidatorTest {
         Validate validator = new Validator();
         String input = "-d c:/ -n dfjfg46j/ -r -o log.txt";
         boolean result = validator.validation(input);
-        String expected = "Please enter regular verb like: \\W or \\w";
+        String expected = "Please enter regular verb like: \\W or \\w" + System.lineSeparator();
         assertThat(result, is(false));
         assertThat(expected, is(out.toString()));
         out.reset();
@@ -65,9 +68,9 @@ public class ValidatorTest {
     @Test
     public void whenWeEnteredWrongFileOutTest() {
         Validate validator = new Validator();
-        String input = "-d c:/ -n *.txt -m -o log";
+        String input = "-d c:/ -n .txt -m -o .logdgh";
         boolean result = validator.validation(input);
-        String expected = "Please enter name like: *.txt or *.csv";
+        String expected = "Please enter name like: *.txt or *.csv" + System.lineSeparator();
         assertThat(result, is(false));
         assertThat(expected, is(out.toString()));
         out.reset();
