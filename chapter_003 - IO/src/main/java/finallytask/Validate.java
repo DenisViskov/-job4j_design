@@ -9,5 +9,5 @@ package finallytask;
  */
 public interface Validate {
 
-    public boolean validation(String line);
+    boolean validation(String line);
 }
