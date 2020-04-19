@@ -11,7 +11,7 @@ import java.util.Map;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
-public class MaskCommandTest {
+public class SameNameCommandTest {
 
     @Rule
     public final TemporaryFolder folder = new TemporaryFolder();
@@ -20,12 +20,12 @@ public class MaskCommandTest {
     public void lookingForTest() throws IOException {
         folder.newFolder().createNewFile();
         folder.newFolder().createNewFile();
-        File target = folder.newFile("vasya.txt");
+        File target = folder.newFile("vasya");
         Map<String, String> commands = Map.of("-d", folder.getRoot().getAbsolutePath(),
-                "-n", ".txt",
-                "key", "-m",
+                "-n", "vasya",
+                "key", "-f",
                 "-o", "log.txt");
-        DefaultCommand command = new MaskCommand(commands);
+        DefaultCommand command = new SameNameCommand(commands);
         command.lookingFor();
         String expected = target.getPath();
         String out = command.getResult();

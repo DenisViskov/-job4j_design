@@ -13,11 +13,11 @@ import java.util.Map;
  *
  * @author Денис Висков
  * @version 1.0
- * @since 17.04.2020
+ * @since 19.04.2020
  */
-public class MaskCommand extends DefaultCommand {
+public class RegexCommand extends DefaultCommand {
 
-    public MaskCommand(Map<String, String> commands) {
+    public RegexCommand(Map<String, String> commands) {
         super(commands);
     }
 
@@ -32,7 +32,7 @@ public class MaskCommand extends DefaultCommand {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        if (file.toString().endsWith(getDestination())) {
+        if (file.toString().matches(getDestination())) {
             result.add(file.toString());
         }
         return super.visitFile(file, attrs);
