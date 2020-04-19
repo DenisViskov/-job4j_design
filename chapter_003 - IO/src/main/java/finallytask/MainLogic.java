@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 /**
- * Класс реализует ...
+ * Class is a main logic
  *
  * @author Денис Висков
  * @version 1.0
@@ -21,6 +21,12 @@ public class MainLogic {
                 + "-o log directory");
     }
 
+    /**
+     * Method has returns object of command in dependency of key
+     *
+     * @param keys - keys
+     * @return - DefaultCommand
+     */
     private static DefaultCommand getObjectCommand(Map<String, String> keys) {
         DefaultCommand command = null;
         if (keys.containsValue("-m")) {

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /**
- * Класс реализует ...
+ * Class is a validator
  *
  * @author Денис Висков
  * @version 1.0
@@ -17,8 +17,17 @@ import java.util.stream.Stream;
  */
 public class Validator implements Validate {
 
+    /**
+     * Keys
+     */
     private Map<String, String> keys = new HashMap<>();
 
+    /**
+     * Method has realizes a validation by given parameters from user
+     *
+     * @param line - entered user
+     * @return - true or false in dependency of result
+     */
     @Override
     public boolean validation(String line) {
         if (line.isEmpty()) {
@@ -34,11 +43,20 @@ public class Validator implements Validate {
         return checkKeys();
     }
 
+    /**
+     * @return - keys
+     */
     @Override
     public Map<String, String> keys() {
         return keys;
     }
 
+    /**
+     * Method building of command
+     *
+     * @param spliteLine - split line by space
+     * @return - commands
+     */
     private Map<String, String> buildCommand(String[] spliteLine) {
         Map<String, String> result = new HashMap<>();
         for (int i = 0; i < spliteLine.length; i++) {
@@ -57,6 +75,11 @@ public class Validator implements Validate {
         return result;
     }
 
+    /**
+     * Method as a checking of given keys from user
+     *
+     * @return - true or false in dependency of result
+     */
     private boolean checkKeys() {
         String directory = keys.get("-d");
         String target = keys.get("-n");
@@ -70,6 +93,12 @@ public class Validator implements Validate {
                 && checkOut(out);
     }
 
+    /**
+     * Method is extension for checkKeys
+     *
+     * @param path - path
+     * @return - true or false in dependency of result
+     */
     private boolean checkDirectory(String path) {
         boolean result = true;
         if (!Files.isDirectory(Paths.get(path))) {
@@ -79,6 +108,13 @@ public class Validator implements Validate {
         return result;
     }
 
+    /**
+     * Method is extension for checkKeys
+     *
+     * @param key    - key
+     * @param target - target
+     * @return - true or false in dependency of result
+     */
     private boolean checkTarget(String key, String target) {
         boolean result = true;
         if (key.equals("-m")) {
@@ -97,6 +133,12 @@ public class Validator implements Validate {
         return result;
     }
 
+    /**
+     * Method is extension for checkKeys
+     *
+     * @param path - path
+     * @return - true or false in dependency of result
+     */
     private boolean checkOut(String path) {
         boolean result = true;
         String cut = path.contains(".")

@@ -1,7 +1,7 @@
 package finallytask;
 
 /**
- * Интерфейс ...
+ * Interface is a command
  *
  * @author Денис Висков
  * @version 1.0
@@ -9,5 +9,8 @@ package finallytask;
  */
 public interface Command {
 
+    /**
+     * Method should looking for file
+     */
     void lookingFor();
 }

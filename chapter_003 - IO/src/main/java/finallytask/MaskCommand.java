@@ -9,7 +9,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
 
 /**
- * Класс реализует ...
+ * Class is a Mask
  *
  * @author Денис Висков
  * @version 1.0
@@ -21,6 +21,9 @@ public class MaskCommand extends DefaultCommand {
         super(commands);
     }
 
+    /**
+     * Method has realizes looking for file in directory
+     */
     @Override
     public void lookingFor() {
         try {

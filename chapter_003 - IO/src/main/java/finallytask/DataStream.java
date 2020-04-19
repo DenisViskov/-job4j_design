@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Класс реализует ...
+ * Class work with Data
  *
  * @author Денис Висков
  * @version 1.0
@@ -13,8 +13,17 @@ import java.nio.file.Paths;
  */
 public class DataStream implements Data {
 
+    /**
+     * Console
+     */
     private final BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
+    /**
+     * Method has realizes writing result in log file
+     *
+     * @param log  - result string
+     * @param file - path of file
+     */
     @Override
     public void logWriter(String log, Path file) {
         if (log.isEmpty()) {
@@ -29,6 +38,11 @@ public class DataStream implements Data {
         }
     }
 
+    /**
+     * Method has realizes reading line from console
+     *
+     * @return - entered line
+     */
     @Override
     public String getCommand() {
         String result = "";

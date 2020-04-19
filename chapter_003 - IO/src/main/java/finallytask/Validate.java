@@ -3,7 +3,7 @@ package finallytask;
 import java.util.Map;
 
 /**
- * Интерфейс ...
+ * Interface is a validation
  *
  * @author Денис Висков
  * @version 1.0
@@ -11,7 +11,18 @@ import java.util.Map;
  */
 public interface Validate {
 
+    /**
+     * Method should do validation by given data from user
+     *
+     * @param line - entered user
+     * @return - true or false in dependency of result
+     */
     boolean validation(String line);
 
+    /**
+     * Method should return keys of user
+     *
+     * @return - keys
+     */
     Map<String, String> keys();
 }
