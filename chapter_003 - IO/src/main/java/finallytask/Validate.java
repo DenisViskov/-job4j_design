@@ -1,5 +1,7 @@
 package finallytask;
 
+import java.util.Map;
+
 /**
  * Интерфейс ...
  *
@@ -10,4 +12,6 @@ package finallytask;
 public interface Validate {
 
     boolean validation(String line);
+
+    Map<String, String> keys();
 }

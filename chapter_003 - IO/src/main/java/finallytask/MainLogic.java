@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class MainLogic {
 
-    {
+    static {
         System.out.println("Welcome to app which looking for path by given four parameters:" + System.lineSeparator()
                 + "-d directory" + System.lineSeparator()
                 + "-n file name" + System.lineSeparator()
@@ -20,7 +20,27 @@ public class MainLogic {
                 + "-o log directory");
     }
 
+    private static DefaultCommand getObjectCommand(Map<String, String> keys) {
+        DefaultCommand command = null;
+        if (keys.containsValue("-m")) {
+            command = new MaskCommand(keys);
+        } else if (keys.containsValue("-r")) {
+            command = new RegexCommand(keys);
+        } else if (keys.containsValue("-f")) {
+            command = new SameNameCommand(keys);
+        }
+        return command;
+    }
 
     public static void main(String[] args) {
+        final Validate validate = new Validator();
+        final Data data = new DataStream();
+        String console = data.getCommand();
+        while (!validate.validation(console)) {
+            console = data.getCommand();
+        }
+        final DefaultCommand command = getObjectCommand(validate.keys());
+        command.lookingFor();
+        data.logWriter(command.getResult(), Paths.get(command.getOutput()));
     }
 }

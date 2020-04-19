@@ -34,6 +34,11 @@ public class Validator implements Validate {
         return checkKeys();
     }
 
+    @Override
+    public Map<String, String> keys() {
+        return keys;
+    }
+
     private Map<String, String> buildCommand(String[] spliteLine) {
         Map<String, String> result = new HashMap<>();
         for (int i = 0; i < spliteLine.length; i++) {
@@ -101,9 +106,5 @@ public class Validator implements Validate {
             result = false;
         }
         return result;
-    }
-
-    public Map<String, String> getKeys() {
-        return keys;
     }
 }
