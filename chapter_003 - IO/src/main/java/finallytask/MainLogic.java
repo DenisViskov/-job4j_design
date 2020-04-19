@@ -1,5 +1,6 @@
 package finallytask;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class MainLogic {
         return command;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         final Validate validate = new Validator();
         final Data data = new DataStream();
         String console = data.getCommand();

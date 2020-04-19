@@ -31,7 +31,7 @@ public class DataStreamTest {
     }
 
     @Test
-    public void getCommandTest() {
+    public void getCommandTest() throws IOException {
         ByteArrayInputStream in = new ByteArrayInputStream("Hi, what's up?".getBytes());
         System.setIn(in);
         String expected = "Hi, what's up?";

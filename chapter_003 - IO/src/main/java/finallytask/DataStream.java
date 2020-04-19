@@ -13,6 +13,8 @@ import java.nio.file.Paths;
  */
 public class DataStream implements Data {
 
+    private final BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
     @Override
     public void logWriter(String log, Path file) {
         if (log.isEmpty()) {
@@ -21,6 +23,7 @@ public class DataStream implements Data {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file.toFile()))) {
             writer.write(log);
             writer.flush();
+            console.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,7 +32,7 @@ public class DataStream implements Data {
     @Override
     public String getCommand() {
         String result = "";
-        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             result = console.readLine();
         } catch (IOException e) {
             e.printStackTrace();
