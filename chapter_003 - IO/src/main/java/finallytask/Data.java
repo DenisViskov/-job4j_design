@@ -1,5 +1,7 @@
 package finallytask;
 
+import java.nio.file.Path;
+
 /**
  * Интерфейс ...
  *
@@ -9,7 +11,7 @@ package finallytask;
  */
 public interface Data {
 
-    void logWriter(String log);
+    void logWriter(String log, Path file);
 
     String getCommand();
 }

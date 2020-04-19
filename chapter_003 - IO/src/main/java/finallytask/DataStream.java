@@ -13,15 +13,12 @@ import java.nio.file.Paths;
  */
 public class DataStream implements Data {
 
-    private final Path path;
-
-    public DataStream(Path path) {
-        this.path = path;
-    }
-
     @Override
-    public void logWriter(String log) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path.toFile()))) {
+    public void logWriter(String log, Path file) {
+        if (log.isEmpty()) {
+            throw new IllegalArgumentException("log is empty it may be file not found");
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file.toFile()))) {
             writer.write(log);
             writer.flush();
         } catch (IOException e) {

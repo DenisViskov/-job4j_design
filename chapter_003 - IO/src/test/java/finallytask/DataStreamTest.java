@@ -19,8 +19,8 @@ public class DataStreamTest {
     public void logWriterTest() throws IOException {
         File log = folder.newFile("Log.txt");
         String input = "Hello";
-        DataStream dataStream = new DataStream(log.toPath());
-        dataStream.logWriter(input);
+        DataStream dataStream = new DataStream();
+        dataStream.logWriter(input, log.toPath());
         String expected = "";
         try (BufferedReader reader = new BufferedReader(new FileReader(log))) {
             while (reader.ready()) {
@@ -35,7 +35,7 @@ public class DataStreamTest {
         ByteArrayInputStream in = new ByteArrayInputStream("Hi, what's up?".getBytes());
         System.setIn(in);
         String expected = "Hi, what's up?";
-        String out = new DataStream(null).getCommand();
+        String out = new DataStream().getCommand();
         assertThat(expected, is(out));
     }
 }

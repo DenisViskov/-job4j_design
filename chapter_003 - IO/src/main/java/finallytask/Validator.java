@@ -57,6 +57,9 @@ public class Validator implements Validate {
         String target = keys.get("-n");
         String out = keys.get("-o");
         String key = keys.get("key");
+        if (directory == null || target == null || out == null || key == null) {
+            throw new IllegalArgumentException("please restart program and enter correct value");
+        }
         return checkDirectory(directory)
                 && checkTarget(key, target)
                 && checkOut(out);
@@ -98,5 +101,9 @@ public class Validator implements Validate {
             result = false;
         }
         return result;
+    }
+
+    public Map<String, String> getKeys() {
+        return keys;
     }
 }
