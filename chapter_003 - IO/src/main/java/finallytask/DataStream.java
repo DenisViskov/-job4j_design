@@ -14,11 +14,6 @@ import java.nio.file.Paths;
 public class DataStream implements Data {
 
     /**
-     * Console
-     */
-    private final BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-
-    /**
      * Method has realizes writing result in log file
      *
      * @param log  - result string
@@ -32,7 +27,6 @@ public class DataStream implements Data {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file.toFile()))) {
             writer.write(log);
             writer.flush();
-            console.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,13 +38,10 @@ public class DataStream implements Data {
      * @return - entered line
      */
     @Override
-    public String getCommand() {
+    public String getCommand() throws IOException {
         String result = "";
-        try {
-            result = console.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        result = console.readLine();
         return result;
     }
 }

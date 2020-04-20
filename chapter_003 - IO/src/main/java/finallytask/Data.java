@@ -25,5 +25,5 @@ public interface Data {
      *
      * @return - String command
      */
-    String getCommand();
+    String getCommand() throws IOException;
 }
