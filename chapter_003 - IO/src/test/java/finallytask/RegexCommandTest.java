@@ -25,7 +25,7 @@ public class RegexCommandTest {
                 "-n", ".+\\d+$",
                 "key", "-r",
                 "-o", "log.txt");
-        DefaultCommand command = new RegexCommand(commands);
+        Command command = new RegexCommand(commands);
         command.lookingFor();
         String expected = target.getPath();
         String out = command.getResult();

@@ -27,8 +27,8 @@ public class MainLogic {
      * @param keys - keys
      * @return - DefaultCommand
      */
-    private static DefaultCommand getObjectCommand(Map<String, String> keys) {
-        DefaultCommand command = null;
+    private static Command getObjectCommand(Map<String, String> keys) {
+        Command command = null;
         if (keys.containsValue("-m")) {
             command = new MaskCommand(keys);
         } else if (keys.containsValue("-r")) {
@@ -46,7 +46,7 @@ public class MainLogic {
         while (!validate.validation(console)) {
             console = data.getCommand();
         }
-        final DefaultCommand command = getObjectCommand(validate.keys());
+        final Command command = getObjectCommand(validate.keys());
         command.lookingFor();
         data.logWriter(command.getResult(), Paths.get(command.getOutput()));
     }

@@ -25,7 +25,7 @@ public class MaskCommandTest {
                 "-n", ".txt",
                 "key", "-m",
                 "-o", "log.txt");
-        DefaultCommand command = new MaskCommand(commands);
+        Command command = new MaskCommand(commands);
         command.lookingFor();
         String expected = target.getPath();
         String out = command.getResult();
