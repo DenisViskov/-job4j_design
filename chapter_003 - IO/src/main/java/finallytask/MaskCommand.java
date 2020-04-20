@@ -1,12 +1,10 @@
 package finallytask;
 
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
+import java.util.StringJoiner;
 
 /**
  * Class is a Mask
@@ -15,10 +13,56 @@ import java.util.Map;
  * @version 1.0
  * @since 17.04.2020
  */
-public class MaskCommand extends DefaultCommand {
+public class MaskCommand extends SimpleFileVisitor<Path> implements Command {
+
+    /**
+     * Result
+     */
+    private final StringJoiner result = new StringJoiner(System.lineSeparator());
+
+    /**
+     * Commands
+     */
+    private final Map<String, String> commands;
 
     public MaskCommand(Map<String, String> commands) {
-        super(commands);
+        this.commands = commands;
+    }
+
+
+    /**
+     * @return - directory
+     */
+    public String getSource() {
+        return commands.get("-d");
+    }
+
+    /**
+     * @return - destination file or regex or mask
+     */
+    public String getDestination() {
+        return commands.get("-n");
+    }
+
+    /**
+     * @return - key of command
+     */
+    public String getCommand() {
+        return commands.get("key");
+    }
+
+    /**
+     * @return - output path
+     */
+    public String getOutput() {
+        return commands.get("-o");
+    }
+
+    /**
+     * @return - result as a String
+     */
+    public String getResult() {
+        return result.toString();
     }
 
     /**

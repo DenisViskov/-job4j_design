@@ -25,7 +25,7 @@ public class SameNameCommandTest {
                 "-n", "vasya",
                 "key", "-f",
                 "-o", "log.txt");
-        DefaultCommand command = new SameNameCommand(commands);
+        Command command = new SameNameCommand(commands);
         command.lookingFor();
         String expected = target.getPath();
         String out = command.getResult();
