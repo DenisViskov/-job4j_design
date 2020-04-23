@@ -1,13 +1,14 @@
 package minicmd;
 
 /**
- * Класс реализует ...
+ * Class has realizes checking our Bash cmd
  *
  * @author Денис Висков
  * @version 1.0
  * @since 23.04.2020
  */
 public class Directory {
+
     public static void main(String[] args) {
 
         final Shell shell = new Shell();
