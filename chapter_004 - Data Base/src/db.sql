@@ -3,34 +3,28 @@ create table users(
     id serial primary key,
     login varchar(20),
     whole_name varchar(50),
-    role integer,
-    task integer,
-    registration_date date,
-    foreign key (role) references roles(id),
-    foreign key (task) references tasks(id)
+    role_id integer,
+    registration_date date
 );
 
-create table roles(
+create table user_role(
     id serial primary key,
     type varchar(20),
-    access integer,
-    foreign key (access) references accesses(id)
+    access_id integer
 );
 
-create table accesses(
+create table roles_accesses(
     id serial primary key,
     type varchar(20)
 );
 
 create table tasks(
     id serial primary key,
-    description integer,
-    state integer,
+    user_id integer,
+    comment_id integer,
+    state_id integer,
     create_date timestamp,
-    category integer,
-    foreign key (description) references comments(id),
-    foreign key (state) references states(id),
-    foreign key (category) references categories(id)
+    category_id integer
 );
 
 create table categories(
@@ -43,7 +37,7 @@ create table states(
     type varchar(15)
 );
 
-create table extensions(
+create table attachments(
     id serial primary key,
     format varchar(3),
     size numeric(4,2),
@@ -53,9 +47,7 @@ create table extensions(
 create table comments(
     id serial primary key,
     message text,
-    author integer,
+    user_id integer,
     created_time timestamp,
-    extension integer,
-    foreign key (author) references users(id),
-    foreign key (extension) references extensions(id)
+    attachment_id integer,
 );
