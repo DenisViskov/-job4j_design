@@ -21,7 +21,7 @@ create table accesses(
 
 create table tasks(
     id serial primary key,
-    description text,
+    description integer references comments(id),
     state integer references state(id),
     create_date timestamp,
     category integer references categories(id)
@@ -40,7 +40,7 @@ create table state(
 create table extensions(
     id serial primary key,
     format varchar(3),
-    size numeric(1,2),
+    size numeric(4,2),
     URL text
 )
 
