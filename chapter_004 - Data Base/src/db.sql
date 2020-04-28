@@ -24,7 +24,8 @@ create table roles_accesses(
 create table user_role(
     id serial primary key,
     type varchar(20),
-    access_id integer
+    access_id integer,
+    foreign key(access_id) references roles_accesses(id)
 );
 
 create table users(
@@ -32,7 +33,8 @@ create table users(
     login varchar(20),
     whole_name varchar(50),
     role_id integer,
-    registration_date date
+    registration_date date,
+    foreign key(role_id) references user_role(id)
 );
 
 create table comments(
@@ -41,6 +43,8 @@ create table comments(
     user_id integer,
     created_time timestamp,
     attachment_id integer,
+    foreign key (user_id) references users(id),
+    foreign key (attachment_id) references attachments(id)
 );
 
 create table tasks(
@@ -49,5 +53,9 @@ create table tasks(
     comment_id integer,
     state_id integer,
     create_date timestamp,
-    category_id integer
+    category_id integer,
+    foreign key (user_id) references users(id),
+    foreign key (comment_id) references comments(id),
+    foreign key (state_id) references states(id),
+    foreign key (category_id) references categories(id)
 );
