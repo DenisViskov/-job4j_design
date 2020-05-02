@@ -11,4 +11,4 @@ select count(*) from product where type_id = '...';
 
 select * from (product join type on product.type_id = type.ID) as total where total.type in('Молочка','Сыр');
 
-
+select total.name, total.type from (product join type on product.type_id = type.ID) as total;
