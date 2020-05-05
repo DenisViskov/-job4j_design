@@ -14,5 +14,5 @@ insert into cars(name,body_id,engine_id,transmission_id)
 values
 ('Toyota 4runner',5,1,1),
 ('Lexus 570LX',5,1,1),
-('Audi A8',1,1,2),
+('Audi A8',1,1,1),
 ('Audi A6',1,2,1);
