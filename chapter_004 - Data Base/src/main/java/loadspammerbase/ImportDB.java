@@ -13,21 +13,34 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * Класс реализует ...
+ * Class has realizes import to DB spammers from file
  *
  * @author Денис Висков
  * @version 1.0
  * @since 09.05.2020
  */
 public class ImportDB {
+    /**
+     * Config properties
+     */
     private Properties cfg;
-    private String dump;
+
+    /**
+     * File path
+     */
+    private final String dump;
 
     public ImportDB(Properties cfg, String dump) {
         this.cfg = cfg;
         this.dump = dump;
     }
 
+    /**
+     * Method has realizes import spammers from file
+     *
+     * @return - List of spammers
+     * @throws IOException
+     */
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
@@ -39,6 +52,13 @@ public class ImportDB {
         return users;
     }
 
+    /**
+     * Method has realizes save imported spammers to Data base
+     *
+     * @param users - List of spammers
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void save(List<User> users) throws ClassNotFoundException, SQLException {
         Class.forName(cfg.getProperty("jdbc.driver"));
         try (Connection cnt = DriverManager.getConnection(
@@ -56,8 +76,17 @@ public class ImportDB {
         }
     }
 
+    /**
+     * Inner class User is data class about users
+     */
     private static class User {
+        /**
+         * Name
+         */
         String name;
+        /**
+         * Email
+         */
         String email;
 
         public User(String name, String email) {
