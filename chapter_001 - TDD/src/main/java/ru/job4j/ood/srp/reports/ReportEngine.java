@@ -9,7 +9,7 @@ import java.util.function.Predicate;
  * @version 1.0
  * @since 23.03.2020
  */
-public class ReportEngine {
+public class ReportEngine implements Report<String> {
     /**
      * Store
      */
@@ -25,6 +25,7 @@ public class ReportEngine {
      * @param filter - filter
      * @return - report
      */
+    @Override
     public String generate(Predicate<Employer> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;" + System.lineSeparator());

@@ -1,16 +1,26 @@
 package ru.job4j.ood.srp.reports;
 
+import org.hamcrest.core.StringContains;
+import org.junit.Rule;
 import org.junit.Test;
-import ru.job4j.ood.srp.reports.Employer;
-import ru.job4j.ood.srp.reports.MemStore;
-import ru.job4j.ood.srp.reports.ReportEngine;
+import org.junit.rules.TemporaryFolder;
 
+import javax.swing.text.html.HTMLDocument;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Calendar;
+import java.util.stream.Collectors;
 
+import static org.hamcrest.core.StringContains.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
 public class ReportEngineTest {
+
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void whenOldGenerated() {
@@ -30,19 +40,21 @@ public class ReportEngineTest {
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
 
-    /*@Test
-    public void whenWeCreateReportForProgrammersHTML() {
+    @Test
+    public void whenWeCreateReportForProgrammersHTML() throws IOException {
+        File file = folder.newFolder();
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        ReportEngine engine = new ReportForProgrammers(store);
-        Report expected = new HTMLDocument(Path);
-        Report out = engine.generate(i -> true);
-        assertThat(out.toString(),is(expected.toString()));
+        Report engine = new ReportForProgrammers(store, Paths.get(file.getAbsolutePath()));
+        File out = (File) engine.generate(i -> true);
+        assertThat(Files.readAllLines(Paths.get(out.getAbsolutePath()))
+                .stream()
+                .collect(Collectors.joining()), containsString("Name; Hired; Fired; Salary;"));
     }
 
-    @Test
+    /*@Test
     public void whenWeCreateReportForAccountant() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
@@ -85,7 +97,7 @@ public class ReportEngineTest {
         ReportEngine engine = new ReportForProgrammers(store);
         Report expected = new XMLReporter(Path);
         Report out = engine.generate(i -> true);
-        assertThat(out.toString(),is(expected.toString()));
+        assertThat(out.toString(), is(expected.toString()));
     }
 
     @Test
@@ -97,6 +109,6 @@ public class ReportEngineTest {
         ReportEngine engine = new ReportForProgrammers(store);
         Report expected = new JsonParser(Path);
         Report out = engine.generate(i -> true);
-        assertThat(out.toString(),is(expected.toString()));
+        assertThat(out.toString(), is(expected.toString()));
     }*/
 }
