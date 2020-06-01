@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import javax.swing.text.html.HTMLDocument;
+import javax.xml.stream.XMLReporter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,27 +48,29 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        Report engine = new ReportForProgrammers(store, Paths.get(file.getAbsolutePath()));
+        Report engine = new ReportForProgrammers(store,
+                Paths.get(file.getAbsolutePath()),
+                ReportForProgrammers.Format.HTML);
         File out = (File) engine.generate(i -> true);
         assertThat(Files.readAllLines(Paths.get(out.getAbsolutePath()))
                 .stream()
                 .collect(Collectors.joining()), containsString("Name; Hired; Fired; Salary;"));
     }
 
-    /*@Test
+    @Test
     public void whenWeCreateReportForAccountant() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employer worker = new Employer("Ivan", now, now, 100);
+        Employer worker = new Employer("Ivan", now, now, 100.25);
         store.add(worker);
-        ReportEngine engine = new ReportEngineForAccountant(store);
+        Report engine = new ReportForAccountant(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(worker.getHired()).append(";")
                 .append(worker.getFired()).append(";")
-                .append(worker.getSalary()).append(";")
+                .append(Math.round(worker.getSalary())).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
@@ -76,39 +79,56 @@ public class ReportEngineTest {
     public void whenWeCreateReportForHR() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employer worker = new Employer("Ivan", now, now, 100);
-        store.add(worker);
-        ReportEngine engine = new ReportEngineForHR(store);
+        Employer first = new Employer("Ivan", now, now, 100);
+        Employer second = new Employer("Ivan", now, now, 90);
+        store.add(second);
+        store.add(first);
+        Report engine = new ReportForHR(store);
         StringBuilder expect = new StringBuilder()
-                .append("Name; Salary;")
+                .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
-                .append(worker.getName()).append(";")
-                .append(worker.getSalary()).append(";")
+                .append(first.getName()).append(";")
+                .append(first.getHired()).append(";")
+                .append(first.getFired()).append(";")
+                .append(first.getSalary()).append(";")
+                .append(System.lineSeparator())
+                .append(second.getName()).append(";")
+                .append(second.getHired()).append(";")
+                .append(second.getFired()).append(";")
+                .append(second.getSalary()).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true), is(expect.toString()));
     }
 
     @Test
-    public void whenWeCreateReportByXML() {
+    public void whenWeCreateReportByXML() throws IOException {
+        File file = folder.newFolder();
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        ReportEngine engine = new ReportForProgrammers(store);
-        Report expected = new XMLReporter(Path);
-        Report out = engine.generate(i -> true);
-        assertThat(out.toString(), is(expected.toString()));
+        Report engine = new ReportForProgrammers(store,
+                Paths.get(file.getAbsolutePath()),
+                ReportForProgrammers.Format.XML);
+        File out = (File) engine.generate(i -> true);
+        assertThat(Files.readAllLines(Paths.get(out.getAbsolutePath()))
+                .stream()
+                .collect(Collectors.joining()), containsString("Name; Hired; Fired; Salary;"));
     }
 
     @Test
-    public void whenWeCreateReportByJSON() {
+    public void whenWeCreateReportByJSON() throws IOException {
+        File file = folder.newFolder();
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        ReportEngine engine = new ReportForProgrammers(store);
-        Report expected = new JsonParser(Path);
-        Report out = engine.generate(i -> true);
-        assertThat(out.toString(), is(expected.toString()));
-    }*/
+        Report engine = new ReportForProgrammers(store,
+                Paths.get(file.getAbsolutePath()),
+                ReportForProgrammers.Format.JSON);
+        File out = (File) engine.generate(i -> true);
+        assertThat(Files.readAllLines(Paths.get(out.getAbsolutePath()))
+                .stream()
+                .collect(Collectors.joining()), containsString("Name; Hired; Fired; Salary;"));
+    }
 }

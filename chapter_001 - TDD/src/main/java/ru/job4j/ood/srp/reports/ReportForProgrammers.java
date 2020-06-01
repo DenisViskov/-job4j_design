@@ -33,14 +33,20 @@ public class ReportForProgrammers implements Report<File> {
     private final Path path;
 
     /**
+     * Format
+     */
+    private final Format format;
+
+    /**
      * Logger
      */
     private static final Logger LOG = LoggerFactory.getLogger(ReportForProgrammers.class);
 
 
-    public ReportForProgrammers(Store store, Path path) {
+    public ReportForProgrammers(Store store, Path path, Format format) {
         this.store = store;
         this.path = path;
+        this.format = format;
     }
 
     /**
@@ -51,10 +57,7 @@ public class ReportForProgrammers implements Report<File> {
      */
     @Override
     public File generate(Predicate<Employer> filter) {
-        String tmpWay = path.toString();
-        File file = new File(tmpWay
-                + FileSystems.getDefault().getSeparator()
-                + "report.html");
+        File file = getTargetFile();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             file.createNewFile();
             writer.write("Name; Hired; Fired; Salary;" + System.lineSeparator());
@@ -73,5 +76,38 @@ public class ReportForProgrammers implements Report<File> {
             LOG.error(e.getMessage(), e);
         }
         return file;
+    }
+
+    /**
+     * Method returns target file for write
+     *
+     * @return - file
+     */
+    private File getTargetFile() {
+        String tmpWay = path.toString();
+        File file;
+        if (format.equals(Format.HTML)) {
+            file = new File(tmpWay
+                    + FileSystems.getDefault().getSeparator()
+                    + "report.html");
+        } else if (format.equals(Format.XML)) {
+            file = new File(tmpWay
+                    + FileSystems.getDefault().getSeparator()
+                    + "report.xml");
+        } else {
+            file = new File(tmpWay
+                    + FileSystems.getDefault().getSeparator()
+                    + "report.json");
+        }
+        return file;
+    }
+
+    /**
+     * Enum of format file
+     */
+    public enum Format {
+        HTML,
+        XML,
+        JSON
     }
 }

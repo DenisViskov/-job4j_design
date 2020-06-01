@@ -10,7 +10,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 23.03.2020
  */
-public class Employer {
+public class Employer implements Comparable<Employer> {
 
     /**
      * Name
@@ -83,5 +83,16 @@ public class Employer {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public int compareTo(Employer o) {
+        if (this.salary < o.salary) {
+            return -1;
+        } else if (this.salary == o.salary) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

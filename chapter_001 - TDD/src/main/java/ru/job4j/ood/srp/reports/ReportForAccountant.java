@@ -3,24 +3,24 @@ package ru.job4j.ood.srp.reports;
 import java.util.function.Predicate;
 
 /**
- * Class has realizes report by Employers
+ * Class is generate report to accountant
  *
  * @author Денис Висков
  * @version 1.0
- * @since 23.03.2020
+ * @since 01.06.2020
  */
-public class ReportEngine implements Report<String> {
+public class ReportForAccountant implements Report<String> {
     /**
      * Store
      */
     private final Store store;
 
-    public ReportEngine(Store store) {
+    public ReportForAccountant(Store store) {
         this.store = store;
     }
 
     /**
-     * Method has realizes generate of report by given predicate in parameters
+     * Method generate report to accountant with rounded salary
      *
      * @param filter - filter
      * @return - report
@@ -33,7 +33,7 @@ public class ReportEngine implements Report<String> {
             text.append(employer.getName()).append(";")
                     .append(employer.getHired()).append(";")
                     .append(employer.getFired()).append(";")
-                    .append(employer.getSalary()).append(";" + System.lineSeparator());
+                    .append(Math.round(employer.getSalary())).append(";" + System.lineSeparator());
         }
         return text.toString();
     }
