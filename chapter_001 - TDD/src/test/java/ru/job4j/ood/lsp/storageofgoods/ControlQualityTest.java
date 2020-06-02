@@ -29,7 +29,7 @@ public class ControlQualityTest {
     public void whenExecuteDistributionReturnShopTest() {
         ControlQuality control = new ControlQuality();
         Food food = new Cheese("Almette",
-                LocalDateTime.of(LocalDate.of(2020, 06, 10), LocalTime.now()),
+                LocalDateTime.of(LocalDate.of(2020, 05, 20), LocalTime.now()),
                 LocalDateTime.of(LocalDate.of(2020, 06, 30), LocalTime.now()),
                 BigDecimal.valueOf(67.0),
                 null);

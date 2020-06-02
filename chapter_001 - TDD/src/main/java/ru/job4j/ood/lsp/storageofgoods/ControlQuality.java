@@ -1,8 +1,12 @@
 package ru.job4j.ood.lsp.storageofgoods;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
+
+import static java.time.temporal.ChronoUnit.*;
 
 /**
  * @author Денис Висков
@@ -13,29 +17,63 @@ public class ControlQuality implements Control<Food, Storage> {
 
     @Override
     public Storage executeDistribution(Food good) {
-        sendToWareHouse(good.getCreateDate(), good.getExpireDate());
-        return null;
+        Storage storage = checkExpire(good);
+        storage.add(good);
+        return storage;
     }
 
     private Storage checkExpire(Food good) {
-        return null;
+        if (isTrash(good.getExpireDate())) {
+            return new Trash();
+        } else if (sendToWareHouse(good.getCreateDate(), good.getExpireDate())) {
+            return new Warehouse();
+        } else {
+            if (shouldBeDiscount(good.getCreateDate(), good.getExpireDate())) {
+                good.setDiscount(getDiscountPrice(25, good.getPrice()));
+            }
+            return new Shop();
+        }
     }
 
     private boolean sendToWareHouse(LocalDateTime created, LocalDateTime expired) {
         boolean result = false;
-        int hundredPercent = Period
-                .between(expired.toLocalDate(),
-                        created.toLocalDate())
-                .getDays();
-        int daysOFPassed = Period
-                .between(LocalDate.now(),
-                        created.toLocalDate())
-                .getDays();
-        int maxCountDays = (hundredPercent / 100) * 25;
-        if (daysOFPassed < maxCountDays) {
+        double hundredPercent = (int) DAYS.between(created, expired);
+        double daysOFPassed = (int) DAYS.between(created, LocalDateTime.now());
+        double maxCountDays = (hundredPercent / 100) * 25;
+        if (Math.round(daysOFPassed) < Math.round(maxCountDays)) {
             result = true;
         }
         return result;
+    }
+
+    private boolean sendToShop(LocalDateTime created, LocalDateTime expired) {
+        boolean result = false;
+        double hundredPercent = (int) DAYS.between(created, expired);
+        double daysOFPassed = (int) DAYS.between(created, LocalDateTime.now());
+        double maxCountDays = (hundredPercent / 100) * 25;
+        if (Math.round(daysOFPassed) > Math.round(maxCountDays)) {
+            result = true;
+        }
+        return result;
+    }
+
+    private boolean shouldBeDiscount(LocalDateTime created, LocalDateTime expired) {
+        boolean result = false;
+        double hundredPercent = (int) DAYS.between(created, expired);
+        double daysOFPassed = (int) DAYS.between(created, LocalDateTime.now());
+        double maxCountDays = (hundredPercent / 100) * 75;
+        if (Math.round(daysOFPassed) > Math.round(maxCountDays)) {
+            result = true;
+        }
+        return result;
+    }
+
+    private BigDecimal getDiscountPrice(int percent, BigDecimal price) {
+        return price.subtract(price.multiply(BigDecimal.valueOf(percent)));
+    }
+
+    private boolean isTrash(LocalDateTime expired) {
+        return DAYS.between(LocalDateTime.now(), expired) < 0 ? true : false;
     }
 
 }
