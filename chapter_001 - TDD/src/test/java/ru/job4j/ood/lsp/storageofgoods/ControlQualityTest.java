@@ -17,8 +17,8 @@ public class ControlQualityTest {
     public void whenExecuteDistributionReturnWareHouseTest() {
         ControlQuality control = new ControlQuality();
         Food food = new Cheese("Almette",
-                LocalDateTime.of(LocalDate.of(2020, 05, 30), LocalTime.now()),
-                LocalDateTime.of(LocalDate.of(2020, 06, 30), LocalTime.now()),
+                LocalDateTime.of(LocalDate.now().minusDays(6), LocalTime.now()),
+                LocalDateTime.of(LocalDate.now().plusDays(24), LocalTime.now()),
                 BigDecimal.valueOf(67.0),
                 null);
         Storage storage = control.executeDistribution(food);
@@ -29,8 +29,8 @@ public class ControlQualityTest {
     public void whenExecuteDistributionReturnShopTest() {
         ControlQuality control = new ControlQuality();
         Food food = new Cheese("Almette",
-                LocalDateTime.of(LocalDate.of(2020, 05, 20), LocalTime.now()),
-                LocalDateTime.of(LocalDate.of(2020, 06, 30), LocalTime.now()),
+                LocalDateTime.of(LocalDate.now().minusDays(10), LocalTime.now()),
+                LocalDateTime.of(LocalDate.now().plusDays(20), LocalTime.now()),
                 BigDecimal.valueOf(67.0),
                 null);
         Storage storage = control.executeDistribution(food);
@@ -41,8 +41,8 @@ public class ControlQualityTest {
     public void whenExecuteDistributionReturnShopAndSetDiscountTest() {
         ControlQuality control = new ControlQuality();
         Food food = new Cheese("Almette",
-                LocalDateTime.of(LocalDate.of(2020, 06, 25), LocalTime.now()),
-                LocalDateTime.of(LocalDate.of(2020, 06, 30), LocalTime.now()),
+                LocalDateTime.of(LocalDate.now().minusDays(25), LocalTime.now()),
+                LocalDateTime.of(LocalDate.now().plusDays(5), LocalTime.now()),
                 BigDecimal.valueOf(67.0),
                 null);
         Storage storage = control.executeDistribution(food);

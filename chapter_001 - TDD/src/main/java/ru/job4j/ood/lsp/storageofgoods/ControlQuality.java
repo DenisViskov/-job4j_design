@@ -25,14 +25,14 @@ public class ControlQuality implements Control<Food, Storage> {
     private Storage checkExpire(Food good) {
         if (isTrash(good.getExpireDate())) {
             return new Trash();
-        } else if (sendToWareHouse(good.getCreateDate(), good.getExpireDate())) {
-            return new Warehouse();
-        } else {
-            if (shouldBeDiscount(good.getCreateDate(), good.getExpireDate())) {
-                good.setDiscount(getDiscountPrice(25, good.getPrice()));
-            }
-            return new Shop();
         }
+        if (sendToWareHouse(good.getCreateDate(), good.getExpireDate())) {
+            return new Warehouse();
+        }
+        if (shouldBeDiscount(good.getCreateDate(), good.getExpireDate())) {
+            good.setDiscount(getDiscountPrice(25, good.getPrice()));
+        }
+        return new Shop();
     }
 
     private boolean sendToWareHouse(LocalDateTime created, LocalDateTime expired) {
@@ -69,7 +69,7 @@ public class ControlQuality implements Control<Food, Storage> {
     }
 
     private BigDecimal getDiscountPrice(int percent, BigDecimal price) {
-        return price.subtract(price.multiply(BigDecimal.valueOf(percent)));
+        return price.subtract(price.multiply(BigDecimal.valueOf((double) percent / 100)));
     }
 
     private boolean isTrash(LocalDateTime expired) {
