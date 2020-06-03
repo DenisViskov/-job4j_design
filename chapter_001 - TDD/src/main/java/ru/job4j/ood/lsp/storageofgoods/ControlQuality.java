@@ -9,6 +9,7 @@ import java.time.temporal.ChronoUnit;
 import static java.time.temporal.ChronoUnit.*;
 
 /**
+ * Class is a control quality of goods
  * @author Денис Висков
  * @version 1.0
  * @since 02.06.2020
@@ -41,17 +42,6 @@ public class ControlQuality implements Control<Food, Storage> {
         double daysOFPassed = (int) DAYS.between(created, LocalDateTime.now());
         double maxCountDays = (hundredPercent / 100) * 25;
         if (Math.round(daysOFPassed) < Math.round(maxCountDays)) {
-            result = true;
-        }
-        return result;
-    }
-
-    private boolean sendToShop(LocalDateTime created, LocalDateTime expired) {
-        boolean result = false;
-        double hundredPercent = (int) DAYS.between(created, expired);
-        double daysOFPassed = (int) DAYS.between(created, LocalDateTime.now());
-        double maxCountDays = (hundredPercent / 100) * 25;
-        if (Math.round(daysOFPassed) > Math.round(maxCountDays)) {
             result = true;
         }
         return result;
