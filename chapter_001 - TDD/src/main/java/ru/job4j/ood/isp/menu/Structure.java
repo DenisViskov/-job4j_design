@@ -25,10 +25,9 @@ public interface Structure<Something> {
     Something select(String name);
 
     /**
-     * Method should collects new Structure by given condition
+     * Method should collects new Structure
      *
-     * @param condition
      * @param items
      */
-    void collectStructure(Predicate<Something> condition, List<Something> items);
+    void collectStructure(List<Something> items);
 }
