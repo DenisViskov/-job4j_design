@@ -10,12 +10,19 @@ import static java.time.temporal.ChronoUnit.*;
 
 /**
  * Class is a control quality of goods
+ *
  * @author Денис Висков
  * @version 1.0
  * @since 02.06.2020
  */
 public class ControlQuality implements Control<Food, Storage> {
 
+    /**
+     * Method execute distribution good to necessary storage
+     *
+     * @param good - good
+     * @return - storage
+     */
     @Override
     public Storage executeDistribution(Food good) {
         Storage storage = checkExpire(good);
@@ -23,6 +30,12 @@ public class ControlQuality implements Control<Food, Storage> {
         return storage;
     }
 
+    /**
+     * Method checking expire date by good and return necessary storage
+     *
+     * @param good - good
+     * @return - necessary storage
+     */
     private Storage checkExpire(Food good) {
         if (isTrash(good.getExpireDate())) {
             return new Trash();
@@ -36,6 +49,13 @@ public class ControlQuality implements Control<Food, Storage> {
         return new Shop();
     }
 
+    /**
+     * Method checking good by given dates on conformity
+     *
+     * @param created - created
+     * @param expired - expired
+     * @return - boolean answer
+     */
     private boolean sendToWareHouse(LocalDateTime created, LocalDateTime expired) {
         boolean result = false;
         double hundredPercent = (int) DAYS.between(created, expired);
@@ -47,6 +67,13 @@ public class ControlQuality implements Control<Food, Storage> {
         return result;
     }
 
+    /**
+     * Method checking good by given dates on necessary set discount
+     *
+     * @param created - created
+     * @param expired - expired
+     * @return - boolean answer
+     */
     private boolean shouldBeDiscount(LocalDateTime created, LocalDateTime expired) {
         boolean result = false;
         double hundredPercent = (int) DAYS.between(created, expired);
@@ -58,10 +85,26 @@ public class ControlQuality implements Control<Food, Storage> {
         return result;
     }
 
+    /**
+     * Method returns new price by given percent of discount
+     *
+     * @param percent - percent
+     * @param price   - price
+     * @return - New BigDecimal price
+     */
     private BigDecimal getDiscountPrice(int percent, BigDecimal price) {
-        return price.subtract(price.multiply(BigDecimal.valueOf((double) percent / 100)));
+        return price
+                .subtract(price
+                        .multiply(BigDecimal
+                                .valueOf((double) percent / 100)));
     }
 
+    /**
+     * Method checking good on trash
+     *
+     * @param expired - expire date
+     * @return - boolean answer
+     */
     private boolean isTrash(LocalDateTime expired) {
         return DAYS.between(LocalDateTime.now(), expired) < 0 ? true : false;
     }
