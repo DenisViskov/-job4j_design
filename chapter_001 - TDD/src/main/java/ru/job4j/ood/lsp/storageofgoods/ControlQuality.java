@@ -108,5 +108,4 @@ public class ControlQuality implements Control<Food, Storage> {
     private boolean isTrash(LocalDateTime expired) {
         return DAYS.between(LocalDateTime.now(), expired) < 0 ? true : false;
     }
-
 }
