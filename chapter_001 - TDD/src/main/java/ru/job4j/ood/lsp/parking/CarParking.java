@@ -6,14 +6,27 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * Class of parking
+ *
  * @author Денис Висков
  * @version 1.0
  * @since 04.06.2020
  */
 public class CarParking implements Parking<Place, Car> {
 
+    /**
+     * Car places
+     */
     private final List<Place> carPlace;
+
+    /**
+     * Truck places
+     */
     private final List<Place> truckPlace;
+
+    /**
+     * Parking
+     */
     private Map<Place, Car> parking;
 
     public CarParking(int car, int truck) {
@@ -22,6 +35,12 @@ public class CarParking implements Parking<Place, Car> {
         parking = initParkingPlace(carPlace, truckPlace);
     }
 
+    /**
+     * Method adds a car into map of parking
+     *
+     * @param car
+     * @return place
+     */
     @Override
     public Place addCar(Car car) {
         Optional<Place> box = Optional.ofNullable(findPlace(car));
@@ -29,6 +48,12 @@ public class CarParking implements Parking<Place, Car> {
         return box.orElse(null);
     }
 
+    /**
+     * Method adds truck into map of parking
+     *
+     * @param truck
+     * @return place
+     */
     @Override
     public Place addTruck(Car truck) {
         Optional<Place> box = Optional.ofNullable(findPlace(truck));
@@ -36,6 +61,12 @@ public class CarParking implements Parking<Place, Car> {
         return box.orElse(null);
     }
 
+    /**
+     * Method export car by given place from map of parking
+     *
+     * @param place
+     * @return car
+     */
     @Override
     public Car leaveCar(Place place) {
         Car car = parking.get(place);
@@ -43,6 +74,12 @@ public class CarParking implements Parking<Place, Car> {
         return car;
     }
 
+    /**
+     * Method for initialization list of places
+     *
+     * @param size
+     * @return list
+     */
     private List<Place> initCarPlace(int size) {
         List<Place> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -51,6 +88,12 @@ public class CarParking implements Parking<Place, Car> {
         return result;
     }
 
+    /**
+     * Method for initialization list of places
+     *
+     * @param size
+     * @return list
+     */
     private List<Place> initTruckPlace(int size) {
         List<Place> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -59,6 +102,13 @@ public class CarParking implements Parking<Place, Car> {
         return result;
     }
 
+    /**
+     * Method for initialization map of parking
+     *
+     * @param carPlaces
+     * @param truckPlaces
+     * @return map
+     */
     private Map<Place, Car> initParkingPlace(List<Place> carPlaces, List<Place> truckPlaces) {
         Map<Place, Car> result = new HashMap<>();
         carPlaces.forEach(place -> result.put(place, null));
@@ -66,6 +116,12 @@ public class CarParking implements Parking<Place, Car> {
         return result;
     }
 
+    /**
+     * Method looking for free places for car
+     *
+     * @param car
+     * @return place
+     */
     @Override
     public Place findPlace(Car car) {
         Place place = null;
@@ -80,6 +136,12 @@ public class CarParking implements Parking<Place, Car> {
         return place;
     }
 
+    /**
+     * Method looking for first free place by given type of car
+     *
+     * @param car
+     * @return place
+     */
     private Place findFirst(Place.PlaceFor car) {
         Place place = null;
         for (Map.Entry<Place, Car> pair : parking.entrySet()) {

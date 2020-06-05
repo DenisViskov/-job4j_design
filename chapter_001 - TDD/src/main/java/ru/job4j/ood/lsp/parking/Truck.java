@@ -4,13 +4,26 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
+ * Class of truck
+ *
  * @author Денис Висков
  * @version 1.0
  * @since 05.06.2020
  */
 public class Truck implements Car {
+    /**
+     * Name of owner
+     */
     private final String nameOwner;
+
+    /**
+     * Number of auto
+     */
     private final int number;
+
+    /**
+     * Passenger size
+     */
     private final int size;
 
     public Truck(String nameOwner, int number, int size) {
@@ -19,6 +32,11 @@ public class Truck implements Car {
         this.size = size;
     }
 
+    /**
+     * Method execute run auto and return random speed
+     *
+     * @return speed
+     */
     @Override
     public int run() {
         return new Random()

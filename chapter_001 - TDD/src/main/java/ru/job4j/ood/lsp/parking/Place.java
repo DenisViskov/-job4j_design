@@ -1,10 +1,19 @@
 package ru.job4j.ood.lsp.parking;
 
-
 import java.util.Objects;
 
+/**
+ * Class of place
+ */
 public class Place {
+    /**
+     * Type of place
+     */
     private final PlaceFor type;
+
+    /**
+     * Number of place
+     */
     private final int number;
 
     public Place(PlaceFor type, int number) {
@@ -43,6 +52,9 @@ public class Place {
         return Objects.hash(type, number);
     }
 
+    /**
+     * Enum of type Places
+     */
     public enum PlaceFor {
         Car,
         Truck
