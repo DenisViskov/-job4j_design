@@ -66,6 +66,7 @@ public class CarParking implements Parking<Place, Car> {
         return result;
     }
 
+    @Override
     public Place findPlace(Car car) {
         Place place = null;
         if (car instanceof Automobile) {

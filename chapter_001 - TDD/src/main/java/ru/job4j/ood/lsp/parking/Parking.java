@@ -32,4 +32,12 @@ public interface Parking<Place, Car> {
      * @return Car
      */
     Car leaveCar(Place place);
+
+    /**
+     * Method should looking for place
+     *
+     * @param car
+     * @return place
+     */
+    Place findPlace(Car car);
 }

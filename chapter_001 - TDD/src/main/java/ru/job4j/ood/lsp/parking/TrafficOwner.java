@@ -1,5 +1,7 @@
 package ru.job4j.ood.lsp.parking;
 
+import java.util.Optional;
+
 /**
  * @author Денис Висков
  * @version 1.0
@@ -15,16 +17,22 @@ public class TrafficOwner implements Regulator<Car, Place> {
 
     @Override
     public Place toPark(Car car) {
-        return null;
+        if (!hasFreePlace(car)) {
+            System.out.println("Not places");
+            return null;
+        }
+        return (Place) (car instanceof Automobile ? parking.addCar(car)
+                : parking.addTruck(car));
     }
 
     @Override
     public Car getCar(Place place) {
-        return null;
+        return (Car) parking.leaveCar(place);
     }
 
     @Override
     public boolean hasFreePlace(Car car) {
-        return false;
+        Optional<Place> box = Optional.ofNullable((Place) parking.findPlace(car));
+        return box.isPresent() ? true : false;
     }
 }
