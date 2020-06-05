@@ -2,6 +2,7 @@ package ru.job4j.ood.lsp.parking;
 
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
@@ -11,7 +12,7 @@ public class TrafficOwnerTest {
     public void toParkTest() {
         TrafficOwner trafficOwner = new TrafficOwner(new CarParking(10, 10));
         Place place = trafficOwner.toPark(new Automobile("asd", 234, 4));
-        assertThat("Car - 1", is(place.toString()));
+        assertThat(place.toString(), startsWith("Car - "));
     }
 
     @Test
