@@ -1,6 +1,8 @@
 package ru.job4j.ood.lsp.parking;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * @author Денис Висков
@@ -19,8 +21,9 @@ public class Automobile implements Car {
     }
 
     @Override
-    public void run() {
-
+    public int run() {
+        return new Random()
+                .nextInt(60) + 1;
     }
 
     @Override
@@ -54,5 +57,14 @@ public class Automobile implements Car {
     @Override
     public int hashCode() {
         return Objects.hash(nameOwner, number, size);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Automobile" + System.lineSeparator());
+        sb.append("nameOwner:").append(nameOwner).append(System.lineSeparator());
+        sb.append("number:").append(number).append(System.lineSeparator());
+        sb.append("size:").append(size);
+        return sb.toString();
     }
 }

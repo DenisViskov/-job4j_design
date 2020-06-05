@@ -10,9 +10,11 @@ package ru.job4j.ood.lsp.parking;
 public interface Car {
 
     /**
-     * Method should drive a car
+     * Method should return speed
+     *
+     * @return speed
      */
-    void run();
+    int run();
 
     /**
      * Method should return number of car
