@@ -1,9 +1,7 @@
 package ru.job4j.ood.lsp.parking;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.swing.text.html.Option;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,22 +24,23 @@ public class CarParking implements Parking<Place, Car> {
 
     @Override
     public Place addCar(Car car) {
-        return null;
+        Optional<Place> box = Optional.ofNullable(findPlace(car));
+        box.ifPresent(place -> parking.replace(place, null, car));
+        return box.orElse(null);
     }
 
     @Override
     public Place addTruck(Car truck) {
-        return null;
+        Optional<Place> box = Optional.ofNullable(findPlace(truck));
+        box.ifPresent(place -> parking.replace(place, null, truck));
+        return box.orElse(null);
     }
 
     @Override
-    public Place leaveCar(Car car) {
-        return null;
-    }
-
-    @Override
-    public Place leaveTruck(Car truck) {
-        return null;
+    public Car leaveCar(Place place) {
+        Car car = parking.get(place);
+        parking.replace(place, car, null);
+        return car;
     }
 
     private List<Place> initCarPlace(int size) {
@@ -65,5 +64,30 @@ public class CarParking implements Parking<Place, Car> {
         carPlaces.forEach(place -> result.put(place, null));
         truckPlaces.forEach(place -> result.put(place, null));
         return result;
+    }
+
+    public Place findPlace(Car car) {
+        Place place = null;
+        if (car instanceof Automobile) {
+            Optional<Place> box = Optional
+                    .ofNullable(findFirst(Place.PlaceFor.Car));
+            place = box.orElse(findFirst(Place.PlaceFor.Truck));
+        }
+        if (car instanceof Truck) {
+            place = findFirst(Place.PlaceFor.Truck);
+        }
+        return place;
+    }
+
+    private Place findFirst(Place.PlaceFor car) {
+        Place place = null;
+        for (Map.Entry<Place, Car> pair : parking.entrySet()) {
+            if (pair.getKey().getType().equals(car)
+                    && pair.getValue() == null) {
+                place = pair.getKey();
+                break;
+            }
+        }
+        return place;
     }
 }

@@ -28,16 +28,8 @@ public interface Parking<Place, Car> {
     /**
      * Method should return car from parking
      *
-     * @param car
-     * @return Place
+     * @param place
+     * @return Car
      */
-    Place leaveCar(Car car);
-
-    /**
-     * Method should return car from parking
-     *
-     * @param truck
-     * @return Place
-     */
-    Place leaveTruck(Car truck);
+    Car leaveCar(Place place);
 }
