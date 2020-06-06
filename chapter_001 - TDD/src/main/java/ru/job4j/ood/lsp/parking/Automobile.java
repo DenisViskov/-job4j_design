@@ -23,7 +23,7 @@ public class Automobile implements Car {
     private final int number;
 
     /**
-     * Passenger count
+     * Dimensions of car
      */
     private final int size;
 

@@ -12,7 +12,7 @@ public class TrafficOwnerTest {
     public void toParkTest() {
         TrafficOwner trafficOwner = new TrafficOwner(new CarParking(10, 10));
         Place place = trafficOwner.toPark(new Automobile("asd", 234, 4));
-        assertThat(place.toString(), startsWith("Car - "));
+        assertThat(place.toString(), is("Car - 1"));
     }
 
     @Test
