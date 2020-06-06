@@ -13,15 +13,15 @@ public class CarParkingTest {
         CarParking carParking = new CarParking(50, 50);
         Automobile car = new Automobile("Sasha", 2525, 4);
         Place place = carParking.addCar(car);
-        assertThat(place.toString(), startsWith("Car - "));
+        assertThat(place.toString(), is("Car - 1"));
     }
 
     @Test
     public void addTruckTest() {
         CarParking carParking = new CarParking(50, 50);
-        Truck car = new Truck("Sasha", 2525, 4);
+        Truck car = new Truck("Sasha", 2525, 5);
         Place place = carParking.addTruck(car);
-        assertThat(place.toString(), startsWith("Truck - "));
+        assertThat(place.toString(), is("Truck - 1"));
     }
 
     @Test

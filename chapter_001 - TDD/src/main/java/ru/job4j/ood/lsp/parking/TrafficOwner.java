@@ -32,7 +32,7 @@ public class TrafficOwner implements Regulator<Car, Place> {
             System.out.println("Not places");
             return null;
         }
-        return (Place) (car instanceof Automobile ? parking.addCar(car)
+        return (Place) (car.size() <= 4 ? parking.addCar(car)
                 : parking.addTruck(car));
     }
 

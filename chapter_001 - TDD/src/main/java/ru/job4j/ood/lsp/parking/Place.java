@@ -16,9 +16,27 @@ public class Place {
      */
     private final int number;
 
-    public Place(PlaceFor type, int number) {
+    /**
+     * Dimensions of place
+     */
+    private final int size;
+
+    /**
+     * Car
+     */
+    private Car car;
+
+    public Place(PlaceFor type, int number, int size) {
         this.type = type;
         this.number = number;
+        this.size = size;
+    }
+
+    public Place(PlaceFor type, int number, int size, Car car) {
+        this.type = type;
+        this.number = number;
+        this.size = size;
+        this.car = car;
     }
 
     public PlaceFor getType() {
@@ -27,6 +45,18 @@ public class Place {
 
     public int getNumber() {
         return number;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     @Override
@@ -44,12 +74,14 @@ public class Place {
         }
         Place place = (Place) o;
         return number == place.number
-                && type == place.type;
+                && size == place.size
+                && type == place.type
+                && car.equals(place.car);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, number);
+        return Objects.hash(type, number, size, car);
     }
 
     /**

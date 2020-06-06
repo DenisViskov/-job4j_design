@@ -22,7 +22,7 @@ public class Truck implements Car {
     private final int number;
 
     /**
-     * Passenger size
+     * Dimensions of car
      */
     private final int size;
 
