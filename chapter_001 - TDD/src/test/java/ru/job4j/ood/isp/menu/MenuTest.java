@@ -4,26 +4,47 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsInstanceOf.*;
 
 public class MenuTest {
 
     @Test
-    public void selectTest() {
-        Structure menu = new Menu(List.of(new Item("name", "1", null)));
-        Somebody anybody = (Somebody) menu.select("1.name");
-        assertThat(anybody, instanceOf(Item.class));
+    public void addToMainTest() {
+        Something item = new Item("first", "1", null);
+        Menu menu = new Menu();
+        menu.addToMain(item);
+        assertThat(menu.getAll().get(0), is(item));
     }
 
     @Test
-    public void collectStructureTest() {
+    public void addIntoItemTest() {
+        Something to = new Item("first", "1", null);
+        Something add = new Item("second", "2", null);
         Menu menu = new Menu();
-        menu.collectStructure(List.of(new Item("name",
-                "1",
-                List.of(new Item("name",
-                        "2",
-                        null)))));
+        menu.addToMain(to);
+        List<Something> out = menu.addIntoItem(add, to);
+        assertThat(out.get(0).getChildren().get(0), is(add));
     }
+
+    @Test
+    public void deleteItemTest() {
+        Something to = new Item("first", "1", null);
+        Something add = new Item("second", "2", List.of(to));
+        Menu menu = new Menu();
+        menu.addToMain(add);
+        menu.deleteItem(to);
+        assertThat(menu.deleteItem(to).get(0).getChildren(), nullValue(List.class));
+    }
+
+    @Test
+    public void getItemTest() {
+        Something item = new Item("first", "1", null);
+        Menu menu = new Menu();
+        menu.addToMain(item);
+        Something out = menu.getItem("first");
+        assertThat(out, is(item));
+    }
+
 }
