@@ -1,5 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
+import java.util.List;
+
 /**
  * Interface of somebody
  *
@@ -7,7 +9,7 @@ package ru.job4j.ood.isp.menu;
  * @version 1.0
  * @since 03.06.2020
  */
-public interface Somebody {
+public interface Something {
 
     /**
      * Method should do something
@@ -15,9 +17,11 @@ public interface Somebody {
     void doSomething();
 
     /**
-     * Method should return string by object
+     * Method should return children
      *
-     * @return - String
+     * @return - children
      */
-    String toString();
+    List<Something> getChildren();
+
+    String getName();
 }

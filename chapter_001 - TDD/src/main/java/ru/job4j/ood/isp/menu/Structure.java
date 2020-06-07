@@ -11,23 +11,14 @@ import java.util.function.Predicate;
  * @since 03.06.2020
  */
 public interface Structure<Something> {
-    /**
-     * Method should print whole menu
-     */
-    void printMenu();
 
-    /**
-     * Method should select
-     *
-     * @param name
-     * @return Something
-     */
-    Something select(String name);
+    List<Something> addToMain(Something item);
 
-    /**
-     * Method should collects new Structure
-     *
-     * @param items
-     */
-    void collectStructure(List<Something> items);
+    List<Something> addIntoItem(Something add, Something to);
+
+    List<Something> deleteItem(Something item);
+
+    Something getItem(String name);
+
+    List<Something> getAll();
 }
