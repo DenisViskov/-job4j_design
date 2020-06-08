@@ -11,20 +11,34 @@ import java.util.*;
  */
 public class Menu implements Structure<Something> {
 
+    /**
+     * Structure
+     */
     private final Set<Something> tree;
 
     public Menu(Something... items) {
         this.tree = new TreeSet<>(Arrays.asList(items));
     }
 
+    /**
+     * Method return Something by given name
+     *
+     * @param name
+     * @return something
+     */
     @Override
     public Something getItem(String name) {
         return tree.stream()
-                .filter(item -> item.getname().equals(name))
+                .filter(item -> item.getName().equals(name))
                 .findFirst().get();
     }
 
 
+    /**
+     * Override method to String
+     *
+     * @return string by object
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

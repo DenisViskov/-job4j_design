@@ -1,7 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 /**
- * Interface of somebody
+ * Interface of something
  *
  * @author Денис Висков
  * @version 1.0
@@ -14,7 +14,17 @@ public interface Something extends Comparable<Something> {
      */
     void doSomething();
 
-    String getname();
+    /**
+     * Method should return name
+     *
+     * @return name
+     */
+    String getName();
 
+    /**
+     * Method should return prefix
+     *
+     * @return prefix
+     */
     String getPrefix();
 }

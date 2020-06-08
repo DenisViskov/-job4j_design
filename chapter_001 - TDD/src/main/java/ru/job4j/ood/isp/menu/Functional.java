@@ -1,7 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 /**
- * Интерфейс реализующий способность
+ * Interface of functional
  *
  * @author Денис Висков
  * @version 1.0
@@ -9,7 +9,15 @@ package ru.job4j.ood.isp.menu;
  */
 public interface Functional<Structure> {
 
+    /**
+     * Method should print structure
+     */
     void printStructure();
 
+    /**
+     * Method should select something and execute his function
+     *
+     * @param name
+     */
     void select(String name);
 }

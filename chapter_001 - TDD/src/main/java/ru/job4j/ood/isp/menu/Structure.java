@@ -12,7 +12,18 @@ import java.util.function.Predicate;
  */
 public interface Structure<Something> {
 
+    /**
+     * Method should return something by given name
+     *
+     * @param name
+     * @return something
+     */
     Something getItem(String name);
 
+    /**
+     * Method should override toString
+     *
+     * @return string
+     */
     String toString();
 }

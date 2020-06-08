@@ -27,7 +27,7 @@ public class Item implements Something {
     }
 
     /**
-     * Method do anything
+     * Method do something
      */
     @Override
     public void doSomething() {
@@ -35,7 +35,7 @@ public class Item implements Something {
     }
 
     @Override
-    public String getname() {
+    public String getName() {
         return name;
     }
 
@@ -46,7 +46,7 @@ public class Item implements Something {
 
     @Override
     public String toString() {
-        return getPrefix() + "." + getname();
+        return getPrefix() + "." + getName();
     }
 
     @Override
