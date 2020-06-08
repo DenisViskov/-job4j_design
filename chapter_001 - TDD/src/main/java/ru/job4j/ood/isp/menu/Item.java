@@ -1,7 +1,5 @@
 package ru.job4j.ood.isp.menu;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,15 +21,9 @@ public class Item implements Something {
      */
     private final String prefix;
 
-    /**
-     * Children
-     */
-    private List<Something> children;
-
-    public Item(String name, String prefix, List<Something> children) {
+    public Item(String name, String prefix) {
         this.name = name;
         this.prefix = prefix;
-        this.children = children == null ? new ArrayList<>() : children;
     }
 
     /**
@@ -43,28 +35,23 @@ public class Item implements Something {
     }
 
     @Override
-    public List<Something> getChildren() {
-        return children;
-    }
-
-    @Override
-    public String getName() {
+    public String getname() {
         return name;
     }
 
-
+    @Override
     public String getPrefix() {
         return prefix;
     }
 
-
-    public void setChildren(List<Something> children) {
-        this.children = children;
+    @Override
+    public String toString() {
+        return getPrefix() + "." + getname();
     }
 
     @Override
-    public String toString() {
-        return prefix + "." + name;
+    public int compareTo(Something o) {
+        return this.prefix.compareTo(o.getPrefix());
     }
 
     @Override
@@ -77,12 +64,11 @@ public class Item implements Something {
         }
         Item item = (Item) o;
         return Objects.equals(name, item.name)
-                && Objects.equals(prefix, item.prefix)
-                && Objects.equals(children, item.children);
+                && Objects.equals(prefix, item.prefix);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, prefix, children);
+        return Objects.hash(name, prefix);
     }
 }

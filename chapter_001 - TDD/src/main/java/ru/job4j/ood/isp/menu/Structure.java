@@ -12,13 +12,7 @@ import java.util.function.Predicate;
  */
 public interface Structure<Something> {
 
-    List<Something> addToMain(Something item);
-
-    List<Something> addIntoItem(Something add, Something to);
-
-    List<Something> deleteItem(Something item);
-
     Something getItem(String name);
 
-    List<Something> getAll();
+    String toString();
 }
