@@ -27,7 +27,8 @@ public class Shop implements Storage<Food> {
         }
     }
 
-    public List<Food> getListOfGoods() {
+    @Override
+    public List<Food> getAll() {
         return listOfGoods;
     }
 }

@@ -1,5 +1,7 @@
 package ru.job4j.ood.lsp.storageofgoods;
 
+import java.util.List;
+
 /**
  * Interface of control quality
  *
@@ -16,4 +18,12 @@ public interface Control<Food, Storage> {
      * @return - Storage
      */
     Storage executeDistribution(Food good);
+
+    /**
+     * Method should do resort foods from given storage
+     *
+     * @param storage
+     * @return list
+     */
+    List<Storage> resort(List<Storage> storage);
 }

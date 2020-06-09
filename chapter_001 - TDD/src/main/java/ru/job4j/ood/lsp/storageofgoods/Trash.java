@@ -25,7 +25,8 @@ public class Trash implements Storage<Food> {
         trash.add(good);
     }
 
-    public List<Food> getTrash() {
+    @Override
+    public List<Food> getAll() {
         return trash;
     }
 }

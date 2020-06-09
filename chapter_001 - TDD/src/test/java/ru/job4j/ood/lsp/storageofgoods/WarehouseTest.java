@@ -19,6 +19,6 @@ public class WarehouseTest {
                 BigDecimal.valueOf(67.25),
                 BigDecimal.valueOf(0));
         warehouse.add(food);
-        assertThat(food, is(warehouse.getFoods().get(0)));
+        assertThat(food, is(warehouse.getAll().get(0)));
     }
 }
