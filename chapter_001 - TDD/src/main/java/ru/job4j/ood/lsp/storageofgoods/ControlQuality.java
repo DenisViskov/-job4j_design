@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.*;
 
@@ -28,6 +31,20 @@ public class ControlQuality implements Control<Food, Storage> {
         Storage storage = checkExpire(good);
         storage.add(good);
         return storage;
+    }
+
+    /**
+     * Method execute resort goods from store to new store
+     *
+     * @param storage
+     * @return list
+     */
+    @Override
+    public List<Storage> resort(List<Storage> storage) {
+        return (List<Storage>) storage.stream()
+                .flatMap(store -> store.getAll().stream())
+                .map(good -> executeDistribution((Food) good))
+                .collect(Collectors.toList());
     }
 
     /**

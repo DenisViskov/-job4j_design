@@ -19,6 +19,6 @@ public class TrashTest {
                 BigDecimal.valueOf(67.25),
                 BigDecimal.valueOf(0));
         trash.add(food);
-        assertThat(food, is(trash.getTrash().get(0)));
+        assertThat(food, is(trash.getAll().get(0)));
     }
 }

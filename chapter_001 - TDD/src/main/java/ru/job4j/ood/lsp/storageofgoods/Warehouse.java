@@ -29,7 +29,8 @@ public class Warehouse implements Storage<Food> {
         }
     }
 
-    public List<Food> getFoods() {
+    @Override
+    public List<Food> getAll() {
         return foods;
     }
 }

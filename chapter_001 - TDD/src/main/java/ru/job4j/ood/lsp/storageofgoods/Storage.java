@@ -1,5 +1,7 @@
 package ru.job4j.ood.lsp.storageofgoods;
 
+import java.util.List;
+
 /**
  * Interface of storage
  *
@@ -15,4 +17,11 @@ public interface Storage<Food> {
      * @param good - good
      */
     void add(Food good);
+
+    /**
+     * Method should return all products
+     *
+     * @return list
+     */
+    List<Food> getAll();
 }

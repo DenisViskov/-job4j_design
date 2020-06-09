@@ -19,6 +19,6 @@ public class ShopTest {
                 BigDecimal.valueOf(67.25),
                 BigDecimal.valueOf(0));
         shop.add(food);
-        assertThat(food, is(shop.getListOfGoods().get(0)));
+        assertThat(food, is(shop.getAll().get(0)));
     }
 }
