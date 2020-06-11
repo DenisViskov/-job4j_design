@@ -30,12 +30,12 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
 
     @Override
     public void start() throws IOException {
-        while (place.getFreePlaces().size() > 1) {
+        while (place.getFreePlaces().size() > 0) {
             view.showPolygon();
             try {
                 boolean resultOfStep = person.doStep();
                 while (!resultOfStep) {
-                    System.out.println("Select number from 1 to 9 range");
+                    System.out.println("Select free number from 1 to 9 range");
                     resultOfStep = person.doStep();
                 }
                 computer.doStep();
@@ -43,6 +43,7 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
                 e.printStackTrace();
             }
         }
+        view.showPolygon();
     }
 
     @Override

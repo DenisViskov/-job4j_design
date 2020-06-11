@@ -30,6 +30,9 @@ public class Machine implements Gamer<Figure, Polygon> {
     }
 
     private BoxByThree choose(List<BoxByThree> free) {
+        if (free.size() == 0) {
+            return null;
+        }
         return free.size() > 1 ? free.get(new Random().nextInt(free.size())) : free.get(0);
     }
 }

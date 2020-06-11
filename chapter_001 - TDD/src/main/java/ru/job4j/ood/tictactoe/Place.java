@@ -31,7 +31,7 @@ public class Place implements Polygon<BoxByThree, Gamer> {
     @Override
     public boolean addStep(BoxByThree box, Gamer gamer) {
         boolean result = false;
-        if (isReserved(box)) {
+        if (isReserved(box) || box == null) {
             return result;
         }
         map.put(box, gamer);
@@ -56,18 +56,4 @@ public class Place implements Polygon<BoxByThree, Gamer> {
         return map.get(box) == null ? false : true;
     }
 
-    @Override
-    public String toString() {
-        if (!map.containsValue(Gamer.class)) {
-            return " --- --- --- " + System.lineSeparator()
-                    + "|" + "   " + "|" + "   " + "|" + "   " + "|" + System.lineSeparator()
-                    + " ---" + " ---" + " ---" + System.lineSeparator()
-                    + "|" + "   " + "|" + "   " + "|" + "   " + "|" + System.lineSeparator()
-                    + " ---" + " ---" + " ---" + System.lineSeparator()
-                    + "|" + "   " + "|" + "   " + "|" + "   " + "|" + System.lineSeparator()
-                    + " ---" + " ---" + " ---" + System.lineSeparator();
-
-        }
-        return null;
-    }
 }
