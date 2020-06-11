@@ -26,8 +26,7 @@ public class Person implements Gamer<Figure, Polygon> {
         try (Scanner scanner = new Scanner(System.in)) {
             int selected = scanner.nextInt();
             if (validateInput(selected)) {
-                polygon.addStep(stepOn(selected), this);
-                result = true;
+                result = polygon.addStep(stepOn(selected), this);
             }
         }
         return result;

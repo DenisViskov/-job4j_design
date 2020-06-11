@@ -47,6 +47,11 @@ public class Place implements Polygon<BoxByThree, Gamer> {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Map<BoxByThree, Gamer> getCurrentMap() {
+        return map;
+    }
+
     private boolean isReserved(BoxByThree box) {
         return map.get(box) == null ? false : true;
     }
