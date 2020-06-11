@@ -1,5 +1,7 @@
 package ru.job4j.ood.tictactoe;
 
+import java.io.IOException;
+
 /**
  * Интерфейс реализующий способность
  *
@@ -9,7 +11,7 @@ package ru.job4j.ood.tictactoe;
  */
 public interface Regulation<Gamer, Polygon, UI> {
 
-    void start();
+    void start() throws IOException;
 
     void end();
 }

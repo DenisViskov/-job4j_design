@@ -23,11 +23,10 @@ public class Person implements Gamer<Figure, Polygon> {
     @Override
     public boolean doStep() throws IOException {
         boolean result = false;
-        try (Scanner scanner = new Scanner(System.in)) {
-            int selected = scanner.nextInt();
-            if (validateInput(selected)) {
-                result = polygon.addStep(stepOn(selected), this);
-            }
+        Scanner scanner = new Scanner(System.in);
+        int selected = scanner.nextInt();
+        if (validateInput(selected)) {
+            result = polygon.addStep(stepOn(selected), this);
         }
         return result;
     }

@@ -8,7 +8,7 @@ package ru.job4j.ood.tictactoe;
  * @since 10.06.2020
  */
 public enum BoxByThree {
-    B1, B4, B7,
-    B2, B5, B8,
-    B3, B6, B9
+    B1, B2, B3,
+    B4, B5, B6,
+    B7, B8, B9
 }

@@ -29,8 +29,8 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
     }
 
     @Override
-    public void start() {
-        while (place.getFreePlaces().size() > 0) {
+    public void start() throws IOException {
+        while (place.getFreePlaces().size() > 1) {
             view.showPolygon();
             try {
                 boolean resultOfStep = person.doStep();
@@ -48,5 +48,12 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
     @Override
     public void end() {
 
+    }
+
+    public static void main(String[] args) throws IOException {
+        Polygon polygon = new Place();
+        TicTacToe ticTacToe = new TicTacToe(new Person(Figure.X, polygon),
+                new Machine(Figure.O, polygon), polygon, new Display(polygon));
+        ticTacToe.start();
     }
 }

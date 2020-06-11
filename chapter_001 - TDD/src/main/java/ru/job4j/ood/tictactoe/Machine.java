@@ -21,7 +21,7 @@ public class Machine implements Gamer<Figure, Polygon> {
 
     @Override
     public boolean doStep() throws IOException {
-       return polygon.addStep(choose(polygon.getFreePlaces()), this);
+        return polygon.addStep(choose(polygon.getFreePlaces()), this);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class Machine implements Gamer<Figure, Polygon> {
     }
 
     private BoxByThree choose(List<BoxByThree> free) {
-        return BoxByThree.values()[new Random().nextInt(free.size())];
+        return free.size() > 1 ? free.get(new Random().nextInt(free.size())) : free.get(0);
     }
 }
