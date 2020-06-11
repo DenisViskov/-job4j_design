@@ -7,7 +7,7 @@ package ru.job4j.ood.tictactoe;
  * @version 1.0
  * @since 10.06.2020
  */
-public interface Regulation {
+public interface Regulation<Gamer, Polygon, UI> {
 
     void start();
 
