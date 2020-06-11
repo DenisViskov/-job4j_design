@@ -24,6 +24,11 @@ public class Machine implements Gamer<Figure, Polygon> {
        return polygon.addStep(choose(polygon.getFreePlaces()), this);
     }
 
+    @Override
+    public Figure getFigure() {
+        return figure;
+    }
+
     private BoxByThree choose(List<BoxByThree> free) {
         return BoxByThree.values()[new Random().nextInt(free.size())];
     }

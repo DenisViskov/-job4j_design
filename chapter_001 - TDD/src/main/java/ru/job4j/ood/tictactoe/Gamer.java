@@ -12,4 +12,6 @@ import java.io.IOException;
 public interface Gamer<Figure, Polygon> {
 
     boolean doStep() throws IOException;
+
+    Figure getFigure();
 }

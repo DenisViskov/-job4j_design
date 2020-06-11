@@ -37,7 +37,22 @@ public class Display implements UI<BoxByThree> {
         Map<BoxByThree, Gamer> map = new TreeMap<>(getComparator());
         map.putAll(polygon.getCurrentMap());
         StringBuilder builder = new StringBuilder();
-        map.forEach();
+        int count = 1;
+        for (Map.Entry<BoxByThree, Gamer> pair : map.entrySet()) {
+            if (count == 3) {
+                builder.append(System.lineSeparator());
+                count = 1;
+            }
+            if (pair.getValue() == null) {
+                builder.append(emptyBox);
+            }
+            if (pair.getValue() != null) {
+                builder.append(pair.getValue().getFigure().equals(Figure.X)
+                        ? xIntoBox : zeroIntoBox);
+            }
+            count++;
+        }
+        System.out.println(builder);
     }
 
     private Comparator<BoxByThree> getComparator() {

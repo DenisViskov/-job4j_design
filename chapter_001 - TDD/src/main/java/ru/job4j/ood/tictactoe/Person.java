@@ -32,6 +32,11 @@ public class Person implements Gamer<Figure, Polygon> {
         return result;
     }
 
+    @Override
+    public Figure getFigure() {
+        return figure;
+    }
+
     private BoxByThree stepOn(int selected) {
         return BoxByThree.values()[selected - 1];
     }

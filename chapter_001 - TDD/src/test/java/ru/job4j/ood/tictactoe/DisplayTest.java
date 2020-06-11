@@ -9,7 +9,12 @@ public class DisplayTest {
 
     @Test
     public void showPolygonTest() {
-        Display display = new Display(new Place());
+        Place place = new Place();
+        Gamer first = new Person(Figure.X, place);
+        Gamer second = new Machine(Figure.O, place);
+        place.addStep(BoxByThree.B1, first);
+        place.addStep(BoxByThree.B5, second);
+        Display display = new Display(place);
         display.showPolygon();
     }
 }
