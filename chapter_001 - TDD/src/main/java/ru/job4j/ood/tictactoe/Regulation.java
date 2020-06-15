@@ -9,7 +9,7 @@ import java.io.IOException;
  * @version 1.0
  * @since 10.06.2020
  */
-public interface Regulation<Gamer, Polygon, UI> {
+public interface Regulation<Gamer, Polygon, UI, Box> {
 
     void startingWithPerson() throws IOException;
 

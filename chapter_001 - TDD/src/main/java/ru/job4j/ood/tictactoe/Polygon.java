@@ -10,11 +10,11 @@ import java.util.Map;
  * @version 1.0
  * @since 10.06.2020
  */
-public interface Polygon<Place, Gamer> {
+public interface Polygon<Box, Gamer> {
 
-    boolean addStep(Place box, Gamer gamer);
+    boolean addStep(Box box, Gamer gamer);
 
-    List<Place> getFreePlaces();
+    List<Box> getFreePlaces();
 
-    Map<Place, Gamer> getCurrentMap();
+    Map<Box, Gamer> getCurrentMap();
 }

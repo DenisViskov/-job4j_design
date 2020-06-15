@@ -1,13 +1,14 @@
 package ru.job4j.ood.tictactoe;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author Денис Висков
  * @version 1.0
  * @since 11.06.2020
  */
-public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
+public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
 
     private final Gamer person;
     private final Gamer computer;
@@ -30,7 +31,7 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
 
     @Override
     public void startingWithPerson() throws IOException {
-        while (place.getFreePlaces().size() > 0) {
+        while (place.getFreePlaces().size() > 0 && !isEnd()) {
             view.showPolygon();
             try {
                 boolean resultOfStep = person.doStep();
@@ -67,10 +68,15 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
 
     @Override
     public boolean isEnd() {
-        return false;
+        return checkHorizontalLine();
     }
 
     private boolean checkHorizontalLine() {
+        boolean result = false;
+        Map<BoxByThree, Gamer> map = place.getCurrentMap();
+        /*for (Map.Entry<BoxByThree, Gamer> pair : map.entrySet()) {
+
+        }*/
         return false;
     }
 
@@ -78,6 +84,6 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
         Polygon polygon = new Place();
         TicTacToe ticTacToe = new TicTacToe(new Person(Figure.X, polygon),
                 new Machine(Figure.O, polygon), polygon, new Display(polygon));
-        ticTacToe.startingWithComputer();
+        ticTacToe.startingWithPerson();
     }
 }
