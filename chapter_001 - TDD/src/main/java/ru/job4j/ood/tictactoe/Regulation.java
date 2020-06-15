@@ -11,7 +11,9 @@ import java.io.IOException;
  */
 public interface Regulation<Gamer, Polygon, UI> {
 
-    void start() throws IOException;
+    void startingWithPerson() throws IOException;
 
-    void end();
+    void startingWithComputer() throws IOException;
+
+    boolean isEnd();
 }

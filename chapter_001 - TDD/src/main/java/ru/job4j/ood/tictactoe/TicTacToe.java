@@ -29,7 +29,7 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
     }
 
     @Override
-    public void start() throws IOException {
+    public void startingWithPerson() throws IOException {
         while (place.getFreePlaces().size() > 0) {
             view.showPolygon();
             try {
@@ -47,14 +47,37 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI> {
     }
 
     @Override
-    public void end() {
+    public void startingWithComputer() throws IOException {
+        while (place.getFreePlaces().size() != 1) {
+            try {
+                computer.doStep();
+                view.showPolygon();
+                boolean resultOfStep = person.doStep();
+                while (!resultOfStep) {
+                    System.out.println("Select free number from 1 to 9 range");
+                    resultOfStep = person.doStep();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        computer.doStep();
+        view.showPolygon();
+    }
 
+    @Override
+    public boolean isEnd() {
+        return false;
+    }
+
+    private boolean checkHorizontalLine() {
+        return false;
     }
 
     public static void main(String[] args) throws IOException {
         Polygon polygon = new Place();
         TicTacToe ticTacToe = new TicTacToe(new Person(Figure.X, polygon),
                 new Machine(Figure.O, polygon), polygon, new Display(polygon));
-        ticTacToe.start();
+        ticTacToe.startingWithComputer();
     }
 }

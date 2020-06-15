@@ -16,7 +16,7 @@ public class TicTacToeTest {
         Gamer second = new Machine(Figure.O, place);
         UI view = new Display(place);
         TicTacToe ticTacToe = new TicTacToe(first, second, place, view);
-        ticTacToe.start();
+        ticTacToe.startingWithPerson();
     }
 
     @Test
