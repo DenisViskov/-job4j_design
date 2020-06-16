@@ -73,11 +73,24 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
 
     private boolean checkHorizontalLine() {
         boolean result = false;
-        Map<BoxByThree, Gamer> map = place.getCurrentMap();
-        /*for (Map.Entry<BoxByThree, Gamer> pair : map.entrySet()) {
-
-        }*/
-        return false;
+        boolean temp = true;
+        int count = 0;
+        BoxByThree[] boxes = BoxByThree.values();
+        for (int i = 0; i < boxes.length; i++) {
+            if (result) {
+                break;
+            }
+            if (count == 3) {
+                temp = true;
+            }
+            if (place.getCurrentMap().get(boxes[i]) == null
+                    || !place.getCurrentMap().get(boxes[i]).equals(person)) {
+                temp = false;
+            }
+            count = count < 3 ? ++count : 0;
+            result = temp && count == 3 ? true : false;
+        }
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
