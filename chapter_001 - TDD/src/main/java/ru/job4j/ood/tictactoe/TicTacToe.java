@@ -68,10 +68,10 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
 
     @Override
     public boolean isEnd() {
-        return checkHorizontalLine();
+        return checkHorizontalLine(person);
     }
 
-    private boolean checkHorizontalLine() {
+    private boolean checkHorizontalLine(Gamer gamer) {
         boolean result = false;
         boolean temp = true;
         int count = 0;
@@ -84,13 +84,17 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
                 temp = true;
             }
             if (place.getCurrentMap().get(boxes[i]) == null
-                    || !place.getCurrentMap().get(boxes[i]).equals(person)) {
+                    || !place.getCurrentMap().get(boxes[i]).equals(gamer)) {
                 temp = false;
             }
             count = count < 3 ? ++count : 0;
             result = temp && count == 3 ? true : false;
         }
         return result;
+    }
+
+    private boolean checkVerticalLine(Gamer gamer) {
+        return false;
     }
 
     public static void main(String[] args) throws IOException {
