@@ -2,6 +2,7 @@ package ru.job4j.ood.tictactoe;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Денис Висков
@@ -31,7 +32,7 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
 
     @Override
     public void startingWithPerson() throws IOException {
-        while (place.getFreePlaces().size() > 0 && !isEnd()) {
+        while (place.getFreePlaces().size() > 0) {
             view.showPolygon();
             try {
                 boolean resultOfStep = person.doStep();
@@ -39,7 +40,13 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
                     System.out.println("Select free number from 1 to 9 range");
                     resultOfStep = person.doStep();
                 }
+                if (isEnd()) {
+                    break;
+                }
                 computer.doStep();
+                if (isEnd()) {
+                    break;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,49 +59,97 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
         while (place.getFreePlaces().size() != 1) {
             try {
                 computer.doStep();
+                if (isEnd()) {
+                    break;
+                }
                 view.showPolygon();
                 boolean resultOfStep = person.doStep();
                 while (!resultOfStep) {
                     System.out.println("Select free number from 1 to 9 range");
                     resultOfStep = person.doStep();
                 }
+                if (isEnd()) {
+                    break;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        computer.doStep();
+        if (place.getFreePlaces().size() == 1) {
+            computer.doStep();
+            isEnd();
+        }
         view.showPolygon();
     }
 
     @Override
     public boolean isEnd() {
-        return checkHorizontalLine(person);
+        if (checkHorizontalLine(person) || checkVerticalLine(person) || checkDiagonalLine(person)) {
+            System.out.println("Win person");
+            return true;
+        }
+        if (checkHorizontalLine(computer) || checkVerticalLine(computer) || checkDiagonalLine(computer)) {
+            System.out.println("Win computer");
+            return true;
+        }
+        return false;
     }
 
     private boolean checkHorizontalLine(Gamer gamer) {
-        boolean result = false;
-        boolean temp = true;
-        int count = 0;
-        BoxByThree[] boxes = BoxByThree.values();
-        for (int i = 0; i < boxes.length; i++) {
-            if (result) {
-                break;
-            }
-            if (count == 3) {
-                temp = true;
-            }
-            if (place.getCurrentMap().get(boxes[i]) == null
-                    || !place.getCurrentMap().get(boxes[i]).equals(gamer)) {
-                temp = false;
-            }
-            count = count < 3 ? ++count : 0;
-            result = temp && count == 3 ? true : false;
-        }
-        return result;
+        return place.getCurrentMap().get(BoxByThree.B1) != null
+                && place.getCurrentMap().get(BoxByThree.B1).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B2) != null
+                && place.getCurrentMap().get(BoxByThree.B2).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B3) != null
+                && place.getCurrentMap().get(BoxByThree.B3).equals(gamer)
+                || place.getCurrentMap().get(BoxByThree.B4) != null
+                && place.getCurrentMap().get(BoxByThree.B4).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B5) != null
+                && place.getCurrentMap().get(BoxByThree.B5).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B6) != null
+                && place.getCurrentMap().get(BoxByThree.B6).equals(gamer)
+                || place.getCurrentMap().get(BoxByThree.B7) != null
+                && place.getCurrentMap().get(BoxByThree.B7).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B8) != null
+                && place.getCurrentMap().get(BoxByThree.B8).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B9) != null
+                && place.getCurrentMap().get(BoxByThree.B9).equals(gamer);
     }
 
     private boolean checkVerticalLine(Gamer gamer) {
-        return false;
+        return place.getCurrentMap().get(BoxByThree.B1) != null
+                && place.getCurrentMap().get(BoxByThree.B1).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B4) != null
+                && place.getCurrentMap().get(BoxByThree.B4).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B7) != null
+                && place.getCurrentMap().get(BoxByThree.B7).equals(gamer)
+                || place.getCurrentMap().get(BoxByThree.B2) != null
+                && place.getCurrentMap().get(BoxByThree.B2).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B5) != null
+                && place.getCurrentMap().get(BoxByThree.B5).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B8) != null
+                && place.getCurrentMap().get(BoxByThree.B8).equals(gamer)
+                || place.getCurrentMap().get(BoxByThree.B3) != null
+                && place.getCurrentMap().get(BoxByThree.B3).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B6) != null
+                && place.getCurrentMap().get(BoxByThree.B6).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B9) != null
+                && place.getCurrentMap().get(BoxByThree.B9).equals(gamer);
+    }
+
+    private boolean checkDiagonalLine(Gamer gamer) {
+        return place.getCurrentMap().get(BoxByThree.B1) != null
+                && place.getCurrentMap().get(BoxByThree.B1).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B5) != null
+                && place.getCurrentMap().get(BoxByThree.B5).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B9) != null
+                && place.getCurrentMap().get(BoxByThree.B9).equals(gamer)
+                || place.getCurrentMap().get(BoxByThree.B3) != null
+                && place.getCurrentMap().get(BoxByThree.B3).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B5) != null
+                && place.getCurrentMap().get(BoxByThree.B5).equals(gamer)
+                && place.getCurrentMap().get(BoxByThree.B7) != null
+                && place.getCurrentMap().get(BoxByThree.B7).equals(gamer);
     }
 
     public static void main(String[] args) throws IOException {
