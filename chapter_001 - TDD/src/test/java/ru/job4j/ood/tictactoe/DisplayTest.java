@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
@@ -30,7 +31,7 @@ public class DisplayTest {
         place.addStep(BoxByThree.B5, second);
         Display display = new Display(place);
         display.showPolygon();
-        assertThat(out.toString(), is(" --- --- --- " + System.lineSeparator()
+        assertThat(out.toString(), containsString(" --- --- --- " + System.lineSeparator()
                 + "|" + " X " + "|" + "   " + "|" + "   " + "|" + System.lineSeparator()
                 + " ---" + " ---" + " ---" + System.lineSeparator()
                 + "|" + "   " + "|" + " O " + "|" + "   " + "|" + System.lineSeparator()

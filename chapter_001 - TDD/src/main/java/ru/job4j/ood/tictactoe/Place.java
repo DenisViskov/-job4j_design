@@ -1,6 +1,6 @@
 package ru.job4j.ood.tictactoe;
 
-import javax.swing.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
