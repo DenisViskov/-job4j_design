@@ -16,13 +16,6 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
     private final Polygon place;
     private final UI view;
 
-    {
-        System.out.println("Welcome to Tic tac toe game");
-        System.out.println("You play against the computer");
-        System.out.println("squares on polygon are number from range 1 to 9");
-        System.out.println("for doing steps you need select one of this numbers");
-    }
-
     public TicTacToe(Gamer person, Gamer computer, Polygon place, UI view) {
         this.person = person;
         this.computer = computer;

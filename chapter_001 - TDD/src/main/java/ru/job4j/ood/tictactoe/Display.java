@@ -11,6 +11,13 @@ import java.util.TreeMap;
  */
 public class Display implements UI<BoxByThree> {
 
+    {
+        System.out.println("Welcome to Tic tac toe game");
+        System.out.println("You play against the computer");
+        System.out.println("squares on polygon are number from range 1 to 9");
+        System.out.println("for doing steps you need select one of this numbers");
+    }
+
     private final Polygon polygon;
     private final String emptyBox = " --- --- --- " + System.lineSeparator()
             + "|" + "   " + "|" + "   " + "|" + "   " + "|" + System.lineSeparator()
