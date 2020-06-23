@@ -1,7 +1,6 @@
 package ru.job4j.ood.tictactoe;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,13 +26,13 @@ public class TicTacToeTest {
 
     @Test
     public void whenPersonWinTest() throws IOException {
-        Polygon place = new Place();
+        Polygon place = new PlaceByThree();
         Gamer first = new Person(Figure.X, place);
         Gamer second = new Machine(Figure.O, place);
         place.getCurrentMap().put(BoxByThree.B1, first);
         place.getCurrentMap().put(BoxByThree.B2, first);
         place.getCurrentMap().put(BoxByThree.B3, first);
-        UI view = new Display(place);
+        UI view = new DisplayByThree(place);
         TicTacToe ticTacToe = new TicTacToe(first, second, place, view);
         System.setIn(new ByteArrayInputStream("5".getBytes()));
         ticTacToe.startingWithPerson();
@@ -42,13 +41,13 @@ public class TicTacToeTest {
 
     @Test
     public void whenComputerWinTest() throws IOException {
-        Polygon place = new Place();
+        Polygon place = new PlaceByThree();
         Gamer first = new Person(Figure.X, place);
         Gamer second = new Machine(Figure.O, place);
         place.getCurrentMap().put(BoxByThree.B1, second);
         place.getCurrentMap().put(BoxByThree.B2, second);
         place.getCurrentMap().put(BoxByThree.B3, second);
-        UI view = new Display(place);
+        UI view = new DisplayByThree(place);
         TicTacToe ticTacToe = new TicTacToe(first, second, place, view);
         System.setIn(new ByteArrayInputStream("5".getBytes()));
         ticTacToe.startingWithPerson();

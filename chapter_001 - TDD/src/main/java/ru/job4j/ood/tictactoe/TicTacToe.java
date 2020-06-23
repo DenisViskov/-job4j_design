@@ -1,8 +1,6 @@
 package ru.job4j.ood.tictactoe;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * @author Денис Висков
@@ -146,9 +144,9 @@ public class TicTacToe implements Regulation<Gamer, Polygon, UI, BoxByThree> {
     }
 
     public static void main(String[] args) throws IOException {
-        Polygon polygon = new Place();
+        Polygon polygon = new PlaceByThree();
         TicTacToe ticTacToe = new TicTacToe(new Person(Figure.X, polygon),
-                new Machine(Figure.O, polygon), polygon, new Display(polygon));
+                new Machine(Figure.O, polygon), polygon, new DisplayByThree(polygon));
         ticTacToe.startingWithPerson();
     }
 }

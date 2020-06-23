@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
-public class DisplayTest {
+public class DisplayByThreeTest {
 
     private final PrintStream console = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -24,13 +24,13 @@ public class DisplayTest {
 
     @Test
     public void showPolygonTest() {
-        Place place = new Place();
-        Gamer first = new Person(Figure.X, place);
-        Gamer second = new Machine(Figure.O, place);
-        place.addStep(BoxByThree.B1, first);
-        place.addStep(BoxByThree.B5, second);
-        Display display = new Display(place);
-        display.showPolygon();
+        PlaceByThree placeByThree = new PlaceByThree();
+        Gamer first = new Person(Figure.X, placeByThree);
+        Gamer second = new Machine(Figure.O, placeByThree);
+        placeByThree.addStep(BoxByThree.B1, first);
+        placeByThree.addStep(BoxByThree.B5, second);
+        DisplayByThree displayByThree = new DisplayByThree(placeByThree);
+        displayByThree.showPolygon();
         assertThat(out.toString(), containsString(" --- --- --- " + System.lineSeparator()
                 + "|" + " X " + "|" + "   " + "|" + "   " + "|" + System.lineSeparator()
                 + " ---" + " ---" + " ---" + System.lineSeparator()

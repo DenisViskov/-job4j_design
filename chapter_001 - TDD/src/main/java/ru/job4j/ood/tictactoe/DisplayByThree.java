@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * @version 1.0
  * @since 11.06.2020
  */
-public class Display implements UI<BoxByThree> {
+public class DisplayByThree implements UI<BoxByThree> {
 
     {
         System.out.println("Welcome to Tic tac toe game");
@@ -38,7 +38,7 @@ public class Display implements UI<BoxByThree> {
     private final char zeroIntoBox = 'O';
     private final char xIntoBox = 'X';
 
-    public Display(Polygon polygon) {
+    public DisplayByThree(Polygon polygon) {
         this.polygon = polygon;
     }
 

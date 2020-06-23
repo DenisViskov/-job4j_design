@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @since 10.06.2020
  */
-public class Place implements Polygon<BoxByThree, Gamer> {
+public class PlaceByThree implements Polygon<BoxByThree, Gamer> {
 
     private Map<BoxByThree, Gamer> map;
 
-    public Place() {
+    public PlaceByThree() {
         map = new HashMap<>(9);
         map.put(BoxByThree.B1, null);
         map.put(BoxByThree.B2, null);

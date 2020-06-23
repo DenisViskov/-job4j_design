@@ -11,7 +11,7 @@ public class MachineTest {
 
     @Test
     public void doStepTest() throws IOException {
-        Machine machine = new Machine(Figure.O, new Place());
+        Machine machine = new Machine(Figure.O, new PlaceByThree());
         boolean result = machine.doStep();
         assertThat(result, is(true));
     }
