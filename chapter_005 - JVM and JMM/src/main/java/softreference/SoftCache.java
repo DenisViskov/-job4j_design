@@ -41,6 +41,12 @@ public class SoftCache implements Cache {
         return cache.get(name).get();
     }
 
+    /**
+     * Method put in cache content
+     *
+     * @param name
+     * @param store
+     */
     private void putInCache(String name, Store store) {
         String content = (String) store.get(name);
         cache.put(name, new SoftReference<String>(content));
