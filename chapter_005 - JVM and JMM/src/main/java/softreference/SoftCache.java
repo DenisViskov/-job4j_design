@@ -32,13 +32,14 @@ public class SoftCache implements Cache {
      */
     @Override
     public String getContent(String name, Store store) {
-        if (!cache.containsKey(name)) {
-            putInCache(name, store);
-        }
-        String content = cache.get(name).get();
-        if (content == null) {
-            putInCache(name, store);
+        String content = "";
+        if (cache.containsKey(name)) {
             content = cache.get(name).get();
+            if (content == null) {
+                content = putInCache(name, store);
+            }
+        } else {
+            content = putInCache(name, store);
         }
         return content;
     }
@@ -49,8 +50,9 @@ public class SoftCache implements Cache {
      * @param name
      * @param store
      */
-    private void putInCache(String name, Store store) {
+    private String putInCache(String name, Store store) {
         String content = (String) store.get(name);
         cache.put(name, new SoftReference<String>(content));
+        return content;
     }
 }
