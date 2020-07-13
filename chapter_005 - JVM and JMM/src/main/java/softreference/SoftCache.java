@@ -35,10 +35,12 @@ public class SoftCache implements Cache {
         if (!cache.containsKey(name)) {
             putInCache(name, store);
         }
-        if (cache.get(name) == null) {
+        String content = cache.get(name).get();
+        if (content == null) {
             putInCache(name, store);
+            content = cache.get(name).get();
         }
-        return cache.get(name).get();
+        return content;
     }
 
     /**
